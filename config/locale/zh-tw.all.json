@@ -1,0 +1,56 @@
+{
+  "err_app_name_existed": {
+    "other": "用戶名已存在。"
+  },
+  "err_check_app_name": {
+    "other": "檢查app信息錯誤。"
+  },
+  "err_check_user_name": {
+    "other": "檢查用戶名錯誤。"
+  },
+  "err_cookie_no_user_id": {
+    "other": "cookie中不存在user id。"
+  },
+  "err_no_verification_code": {
+    "other": "沒讀取到短信驗證碼。"
+  },
+  "err_parse_query": {
+    "other": "解析請求query參數錯誤。"
+  },
+  "err_save_app": {
+    "other": "存儲app到數據庫錯誤。"
+  },
+  "err_user_exist": {
+    "other": "用戶信息已存在。"
+  },
+  "err_user_existed": {
+    "other": "用戶已經存在。"
+  },
+  "err_user_insert": {
+    "other": "插入用戶信息錯誤。"
+  },
+  "err_user_not_existed": {
+    "other": "用戶不存在。"
+  },
+  "err_user_not_verified": {
+    "other": "用戶沒驗證，請先驗證。"
+  },
+  "err_user_update": {
+    "other": "更新用戶信息錯誤。"
+  },
+  "err_user_verified": {
+    "other": "用戶驗證錯誤。"
+  },
+  "err_verification_code_not_equal": {
+    "other": "驗證碼不想等。"
+  },
+  "save_app_success": {
+    "other": "成功存儲app。"
+  },
+  "user_login_success": {
+    "other": "登錄成功。"
+  },
+  "user_verified_success": {
+    "other": "用戶驗證成功。"
+  }
+}

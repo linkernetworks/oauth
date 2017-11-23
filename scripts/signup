@@ -1,0 +1,5 @@
+#!/bin/bash
+curl -X POST -d 'email=yoanlin93@gmail.com' \
+            -d 'cellphone=+886975277696' \
+            -d 'password=1234' \
+            http://0.0.0.0:9096/v1/signup | json_pp

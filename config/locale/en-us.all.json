@@ -1,0 +1,53 @@
+{
+  "err_app_name_existed": {
+    "other": "app name has been existed."
+  },
+  "err_check_app_name": {
+    "other": "check app name existed error."
+  },
+  "err_check_user_name": {
+    "other": "check user info existed error."
+  },
+  "err_cookie_no_user_id": {
+    "other": "not get user id in cookie."
+  },
+  "err_no_verification_code": {
+    "other": "not get verification code."
+  },
+  "err_parse_query": {
+    "other": "parse request query error."
+  },
+  "err_save_app": {
+    "other": "save app into db error."
+  },
+  "err_user_existed": {
+    "other": "user has been existed"
+  },
+  "err_user_insert": {
+    "other": "insert user to db error."
+  },
+  "err_user_not_existed": {
+    "other": "user not existed."
+  },
+  "err_user_not_verified": {
+    "other": "user not verified."
+  },
+  "err_user_update": {
+    "other": "update user error."
+  },
+  "err_user_verified": {
+    "other": "user has been verified."
+  },
+  "err_verification_code_not_equal": {
+    "other": "sms verification code does not equal."
+  },
+  "save_app_success": {
+    "other": "app signup successfully."
+  },
+  "user_login_success": {
+    "other": "login successfully."
+  },
+  "user_verified_success": {
+    "other": "user verified successfully."
+  }
+}

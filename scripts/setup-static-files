@@ -1,0 +1,13 @@
+#!/bin/bash
+target=$1
+if [[ -n $target ]] ; then
+    ln -s $target portal
+else
+    git clone ssh://git@bitbucket.org/linkernetworks/linker-portal.git portal
+    (cd portal && npm install)
+fi
+
+(cd portal && make)
+mkdir -p public/static
+rsync -av portal/design/static/ public/static/
+cp -v portal/dist/signin.bundle.js public/static/

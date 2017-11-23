@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <link href="https://cdn.bootcss.com/semantic-ui/2.2.11/semantic.min.css" rel="stylesheet">
+        <link href="https://cdn.bootcss.com/semantic-ui/2.2.11/components/grid.min.css" rel="stylesheet">
+        <link href="https://cdn.bootcss.com/semantic-ui/2.2.11/components/header.min.css" rel="stylesheet">
+        <link href="/assets/css/index.css" rel="stylesheet">
+
+          <style type="text/css">
+            body {
+                background-color: #DADADA;
+            }
+            .column {
+                max-width: 450px;
+            }
+        </style>
+    </head>
+    <body>
+       <div class="ui middle aligned center aligned grid">
+           <div class="column">
+                <form class="ui large form" method="GET" action="/v1/logout">
+                    <div class="ui segment">
+                        <h2 class="ui teal image header">
+                            <div class="content">
+                                Logout to your account
+                            </div>
+                        </h2>
+                        <input name="user_email" class="ui fluid large teal submit button" type="hidden" value="dev@linker.com"></input>                        
+                        <input class="ui fluid large teal submit button" type="submit" value="Logout"></input>
+                    </div>
+                </form>
+            </div>
+        </div>
+       </div>
+    </body>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/semantic-ui/2.2.11/semantic.min.js"></script>
+</html>

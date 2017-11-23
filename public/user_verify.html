@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <link href="https://cdn.bootcss.com/semantic-ui/2.2.11/semantic.min.css" rel="stylesheet">
+        <link href="https://cdn.bootcss.com/semantic-ui/2.2.11/components/grid.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="ui middle aligned one column grid">
+            <div class="ui four wide column centered">
+                <form class="ui form" method="POST" action='/v1/user/verify'>
+                    <h4 class="ui dividing centered header">用户认证</h4>
+                    <div class="two ggfields">
+                        <div class="field">
+                            <label>验证码</label>
+                            <input type="text" placeholder="verified code" name="verified_code">
+                        </div>
+                    </div>
+                    <input class="ui primary button signin-button" type="submit" value="Submmit">
+                    <input class="ui primary button code-resend" type="button" value="resend">
+                </form>
+            </div>
+        </div>
+    </body>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/semantic-ui/2.2.11/semantic.min.js"></script>
+</html>

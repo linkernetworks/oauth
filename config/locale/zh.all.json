@@ -1,0 +1,56 @@
+{
+  "err_app_name_existed": {
+    "other": "用户名已存在。"
+  },
+  "err_check_app_name": {
+    "other": "检查app信息错误。"
+  },
+  "err_check_user_name": {
+    "other": "检查用户名错误。"
+  },
+  "err_cookie_no_user_id": {
+    "other": "cookie中不存在user id。"
+  },
+  "err_no_verification_code": {
+    "other": "没读取到短信验证码。"
+  },
+  "err_parse_query": {
+    "other": "解析请求query参数错误。"
+  },
+  "err_save_app": {
+    "other": "存储app到数据库错误。"
+  },
+  "err_user_exist": {
+    "other": "用户信息已存在。"
+  },
+  "err_user_existed": {
+    "other": "用户已经存在。"
+  },
+  "err_user_insert": {
+    "other": "插入用户信息错误。"
+  },
+  "err_user_not_existed": {
+    "other": "用户不存在。"
+  },
+  "err_user_not_verified": {
+    "other": "用户没验证，请先验证。"
+  },
+  "err_user_update": {
+    "other": "更新用户信息错误。"
+  },
+  "err_user_verified": {
+    "other": "用户验证错误。"
+  },
+  "err_verification_code_not_equal": {
+    "other": "验证码不想等。"
+  },
+  "save_app_success": {
+    "other": "成功存储app。"
+  },
+  "user_login_success": {
+    "other": "登录成功。"
+  },
+  "user_verified_success": {
+    "other": "用户验证成功。"
+  }
+}

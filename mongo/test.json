@@ -1,0 +1,8 @@
+{
+    "host": "localhost",
+    "port": "27017",
+    "timeout": 60,
+    "database": "test_oauth",
+    "user": "",
+    "password": ""   
+}
