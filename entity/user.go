@@ -3,7 +3,7 @@ package entity
 import (
 	"time"
 
-	"bitbucket.org/linkernetworks/cv-tracker/src/oauth/util"
+	"bitbucket.org/linkernetworks/aurora/src/oauth/util"
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2/bson"

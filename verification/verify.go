@@ -1,7 +1,7 @@
 package verification
 
 import (
-	"bitbucket.org/linkernetworks/cv-tracker/src/oauth/sms"
+	"bitbucket.org/linkernetworks/aurora/src/oauth/sms"
 	"errors"
 	"fmt"
 )

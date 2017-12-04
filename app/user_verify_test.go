@@ -6,8 +6,8 @@ import (
 	"os"
 	"testing"
 
-	"bitbucket.org/linkernetworks/cv-tracker/src/oauth/entity"
-	"bitbucket.org/linkernetworks/cv-tracker/src/oauth/util"
+	"bitbucket.org/linkernetworks/aurora/src/oauth/entity"
+	"bitbucket.org/linkernetworks/aurora/src/oauth/util"
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 	"gopkg.in/mgo.v2/bson"

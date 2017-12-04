@@ -1,11 +1,11 @@
 package app
 
 import (
-	"bitbucket.org/linkernetworks/cv-tracker/src/oauth/app/config"
-	"bitbucket.org/linkernetworks/cv-tracker/src/oauth/app/storage"
-	"bitbucket.org/linkernetworks/cv-tracker/src/oauth/mongo"
-	"bitbucket.org/linkernetworks/cv-tracker/src/oauth/sms"
-	"bitbucket.org/linkernetworks/cv-tracker/src/service/redis"
+	"bitbucket.org/linkernetworks/aurora/src/oauth/app/config"
+	"bitbucket.org/linkernetworks/aurora/src/oauth/app/storage"
+	"bitbucket.org/linkernetworks/aurora/src/oauth/mongo"
+	"bitbucket.org/linkernetworks/aurora/src/oauth/sms"
+	"bitbucket.org/linkernetworks/aurora/src/service/redis"
 	"github.com/RangelReale/osin"
 	"github.com/gin-contrib/sessions"
 	"net"

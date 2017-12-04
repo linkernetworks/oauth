@@ -1,9 +1,9 @@
 package config
 
 import (
-	"bitbucket.org/linkernetworks/cv-tracker/src/oauth/mongo"
-	"bitbucket.org/linkernetworks/cv-tracker/src/oauth/sms"
-	"bitbucket.org/linkernetworks/cv-tracker/src/service/redis"
+	"bitbucket.org/linkernetworks/aurora/src/oauth/mongo"
+	"bitbucket.org/linkernetworks/aurora/src/oauth/sms"
+	"bitbucket.org/linkernetworks/aurora/src/service/redis"
 )
 
 // AppConfig

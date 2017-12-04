@@ -3,8 +3,8 @@ package storage
 import (
 	"time"
 
-	"bitbucket.org/linkernetworks/cv-tracker/src/oauth/entity"
-	"bitbucket.org/linkernetworks/cv-tracker/src/oauth/mongo"
+	"bitbucket.org/linkernetworks/aurora/src/oauth/entity"
+	"bitbucket.org/linkernetworks/aurora/src/oauth/mongo"
 	"github.com/RangelReale/osin"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2"

@@ -1,6 +1,6 @@
 package app
 
-import "bitbucket.org/linkernetworks/cv-tracker/src/oauth/validator"
+import "bitbucket.org/linkernetworks/aurora/src/oauth/validator"
 
 type FormActionResponse struct {
 	Error       bool                    `json:"error"`

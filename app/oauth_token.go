@@ -3,9 +3,9 @@ package app
 import (
 	"errors"
 
-	"bitbucket.org/linkernetworks/cv-tracker/src/oauth/entity"
-	"bitbucket.org/linkernetworks/cv-tracker/src/oauth/mongo"
-	"bitbucket.org/linkernetworks/cv-tracker/src/oauth/util"
+	"bitbucket.org/linkernetworks/aurora/src/oauth/entity"
+	"bitbucket.org/linkernetworks/aurora/src/oauth/mongo"
+	"bitbucket.org/linkernetworks/aurora/src/oauth/util"
 	"github.com/RangelReale/osin"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2/bson"

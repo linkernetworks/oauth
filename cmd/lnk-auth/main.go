@@ -5,8 +5,8 @@ import (
 	"log"
 	"net"
 
-	"bitbucket.org/linkernetworks/cv-tracker/src/oauth/app"
-	"bitbucket.org/linkernetworks/cv-tracker/src/oauth/app/config"
+	"bitbucket.org/linkernetworks/aurora/src/oauth/app"
+	"bitbucket.org/linkernetworks/aurora/src/oauth/app/config"
 )
 
 func main() {
