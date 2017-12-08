@@ -18,7 +18,7 @@ type User struct {
 	LastName              string        `bson:"last_name" json:"last_name"`
 	CountryCode           string        `bson:"country_code" json:"country_code"`
 	Cellphone             string        `bson:"cellphone" json:"cellphone"`
-	Role                  string        `bson:"role" json:"role"`
+	Roles                 []string      `bson:"roles" json:"roles"`
 	Verified              bool          `bson:"verified" json:"verified"`
 	VerificationCode      string        `bson:"verification_code" json:"verification_code"`
 	Jwt                   string        `bson:"jwt" json:"jwt"`
