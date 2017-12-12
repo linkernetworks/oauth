@@ -27,6 +27,7 @@ type User struct {
 	RefreshToken          string        `bson:"refresh_token" json:"refresh_token"`
 	CreatedAt             int64         `bson:"created_at,omitempty" json:"created_at"`
 	UpdatedAt             int64         `bson:"updated_at,omitempty" json:"updated_at"`
+	Revoked               bool          `bson:"revoked" json:"revoked"`
 }
 
 const USER_TOKEN_LENGTH = 24
