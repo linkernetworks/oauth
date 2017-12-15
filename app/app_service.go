@@ -25,9 +25,9 @@ func NewServiceProvider(appConfig *config.AppConfig) *ServiceProvider {
 	return NewServiceProviderFromConfig(appConfig)
 }
 
-func NewRedisService(appConfig *config.AppConfig) *redis.RedisService {
+func NewRedisService(appConfig *config.AppConfig) *redis.Service {
 	url := net.JoinHostPort(appConfig.Redis.Host, strconv.Itoa(appConfig.Redis.Port))
-	service := &redis.RedisService{
+	service := &redis.Service{
 		Url:  url,
 		Pool: redis.NewPool(url),
 	}
