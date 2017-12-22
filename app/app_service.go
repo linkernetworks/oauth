@@ -8,8 +8,6 @@ import (
 	"bitbucket.org/linkernetworks/aurora/src/service/redis"
 	"github.com/RangelReale/osin"
 	"github.com/gin-contrib/sessions"
-	"net"
-	"strconv"
 )
 
 // ServiceProvider wrape dependencies of oauth api
@@ -26,10 +24,10 @@ func NewServiceProvider(appConfig *config.AppConfig) *ServiceProvider {
 }
 
 func NewRedisService(appConfig *config.AppConfig) *redis.Service {
-	url := net.JoinHostPort(appConfig.Redis.Host, strconv.Itoa(appConfig.Redis.Port))
+	addr := appConfig.Redis.Addr()
 	service := &redis.Service{
-		Url:  url,
-		Pool: redis.NewPool(url),
+		Url:  addr,
+		Pool: redis.NewPool(addr),
 	}
 	return service
 }
