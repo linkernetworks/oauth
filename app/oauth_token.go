@@ -3,13 +3,14 @@ package app
 import (
 	"errors"
 
+	"net/http"
+
 	"bitbucket.org/linkernetworks/aurora/src/oauth/entity"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/mongo"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/util"
 	"github.com/RangelReale/osin"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2/bson"
-	"net/http"
 )
 
 func OAuthToken(w http.ResponseWriter, r *http.Request, appService *ServiceProvider) {
@@ -28,7 +29,12 @@ func OAuthToken(w http.ResponseWriter, r *http.Request, appService *ServiceProvi
 			// check user table to validate user
 			var user entity.User
 			user.Email, user.Password = ar.Username, ar.Password
-			user.Password = util.EncryptPassword(user.Password)
+			encrypted, err := util.EncryptPassword(user.Password)
+			if err != nil {
+				resp.IsError = true
+				resp.InternalError = err
+			}
+			user.Password = encrypted
 			sql := mongo.Selector{
 				Collection: "user",
 				Selector:   bson.M{"email": user.Email, "password": user.Password},

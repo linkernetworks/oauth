@@ -81,7 +81,7 @@ func (u *User) IsTokenExpired(expiryDuration int64) bool {
 	return true
 }
 
-func (u *User) GenerateJwtToken() string {
+func (u *User) GenerateJwtToken() (string, error) {
 	token := jwt.New(jwt.SigningMethodHS256)
 	claims := token.Claims.(jwt.MapClaims)
 	claims["email"] = u.Email
@@ -89,10 +89,10 @@ func (u *User) GenerateJwtToken() string {
 
 	tokenStr, err := token.SignedString([]byte(TOKEN_KEY))
 	if err != nil {
-		logrus.Fatal(err)
+		return "", err
 	}
 
-	return tokenStr
+	return tokenStr, nil
 }
 
 func (u *User) ParseJwtToken(tokenStr string) *jwt.Token {

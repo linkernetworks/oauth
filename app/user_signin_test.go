@@ -22,7 +22,9 @@ func TestUserSignIn(t *testing.T) {
 
 	// add user without verified for test
 	user := newTestUser()
-	user.Password = util.EncryptPassword(user.Password)
+	encrypted, err := util.EncryptPassword(user.Password)
+	assert.NoError(t, err)
+	user.Password = encrypted
 	user.Verified = false
 	upsertUser(user)
 

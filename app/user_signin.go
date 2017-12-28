@@ -42,7 +42,15 @@ func UserSignIn(w http.ResponseWriter, r *http.Request, appService *ServiceProvi
 	}
 
 	// check if user existed in db
-	user.Password = util.EncryptPassword(user.Password)
+	encrypted, err := util.EncryptPassword(user.Password)
+	if err != nil {
+		toJson(w, FormActionResponse{
+			Error:   true,
+			Message: err.Error(),
+		})
+		return
+	}
+	user.Password = encrypted
 	sql := mongo.Selector{
 		Collection: "user",
 		Selector: bson.M{

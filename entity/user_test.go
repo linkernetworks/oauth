@@ -105,7 +105,8 @@ func TestGenerateJwtToken(t *testing.T) {
 		Email:    "test@linkernetworks.com",
 		Password: "123456",
 	}
-	tokenStr := u.GenerateJwtToken()
+	tokenStr, err := u.GenerateJwtToken()
+	assert.NoError(t, err)
 	if tokenStr == "" {
 		t.Error()
 	}

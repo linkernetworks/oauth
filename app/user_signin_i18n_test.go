@@ -25,7 +25,9 @@ func TestUserSignInI18n(t *testing.T) {
 
 	// add user without verified for test
 	user := newTestUser()
-	user.Password = util.EncryptPassword(user.Password)
+	encrypted, err := util.EncryptPassword(user.Password)
+	assert.NoError(t, err)
+	user.Password = encrypted
 	user.Verified = false
 	upsertUser(user)
 
@@ -58,7 +60,9 @@ func TestUserSignInI18n(t *testing.T) {
 	assert.Equal(t, twm1["message"], twLocale(ErrUserNotExisted))
 	assert.Equal(t, twm1["error"], true)
 
-	twuser.Password = util.EncryptPassword(twuser.Password)
+	encrypted, err = util.EncryptPassword(twuser.Password)
+	assert.NoError(t, err)
+	twuser.Password = encrypted
 	twuser.Verified = false
 	upsertUser(twuser)
 
