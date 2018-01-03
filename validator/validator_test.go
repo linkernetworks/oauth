@@ -15,13 +15,17 @@ func TestMatchRegexpEamil(t *testing.T) {
 		"a@#com",
 		"a@email#com",
 		"a@email.#",
+		"a@email_mail.com",
+		"a@email._com",
 	}
 
 	correctEmailArray := []string{
 		"a@email.com",
-		// "a.b@email.com",
+		"a.b@email.com",
 		"a-b@email.com",
+		"a_b@email.com",
 		"ab@email.org",
+		"ab+tw@email.com",
 	}
 
 	for _, e := range errorEmailArray {
