@@ -12,7 +12,7 @@ import (
 type User struct {
 	ID                    bson.ObjectId `bson:"_id" json:"id"`
 	SerialNumber          string        `bson:"serial_number" json:"serial_number"`
-	Email                 string        `bson:"email" json:"email"`
+	Email                 string        `bson:"email,omitempty" json:"email"`
 	Password              string        `bson:"password,omitempty" json:"password,omitempty"`
 	FirstName             string        `bson:"first_name" json:"first_name"`
 	LastName              string        `bson:"last_name" json:"last_name"`
