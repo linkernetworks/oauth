@@ -2,12 +2,18 @@ package app
 
 import (
 	"net/url"
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
 func TestAppSignup(t *testing.T) {
+	if _, ok := os.LookupEnv("TEST_K8S"); !ok {
+		t.Skip("Skip kubernetes related tests")
+		return
+	}
+
 	// server := setupAPIServer(t)
 	setupAPIServer(t)
 	testLocale := testLocaleFunc(DefaultLocaleLang)
