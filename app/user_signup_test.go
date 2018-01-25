@@ -10,6 +10,11 @@ import (
 )
 
 func TestUserSignUp(t *testing.T) {
+	// EXECUTOR_NUMBER is a jenkins environment variable
+	if os.Getenv("EXECUTOR_NUMBER") != "" {
+		t.Skip("Fix this for concurrent build")
+	}
+
 	phoneNumber, ok := os.LookupEnv("TEST_SMS_PHONENUMBRR")
 	if !ok {
 		t.Skipf("need env TEST_SMS_PHONENUMBRR, skip user signup test.\n")
