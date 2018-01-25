@@ -2,6 +2,7 @@ package app
 
 import (
 	"net/url"
+	"os"
 	"testing"
 
 	"bitbucket.org/linkernetworks/aurora/src/oauth/util"
