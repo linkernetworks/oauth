@@ -145,15 +145,21 @@ func deleteSampleClient() {
 }
 
 func TestClone(t *testing.T) {
+	if _, ok := os.LookupEnv("TEST_K8S"); !ok {
+		t.Skip("Skip kubernetes related tests")
+		return
+	}
+
 	newm := osinStorage.Clone()
 	assert.NotNil(t, newm)
 }
 
-func TestClose(t *testing.T) {
-	t.Skip()
-}
-
 func TestGetClient(t *testing.T) {
+	if _, ok := os.LookupEnv("TEST_K8S"); !ok {
+		t.Skip("Skip kubernetes related tests")
+		return
+	}
+
 	insertSampleClient()
 	defer deleteSampleClient()
 
@@ -169,6 +175,11 @@ func TestGetClient(t *testing.T) {
 }
 
 func TestSaveAuthorize(t *testing.T) {
+	if _, ok := os.LookupEnv("TEST_K8S"); !ok {
+		t.Skip("Skip kubernetes related tests")
+		return
+	}
+
 	authorizeData := newTestAuthorizeData()
 	err := osinStorage.SaveAuthorize(&authorizeData)
 	if err != nil {
@@ -177,6 +188,11 @@ func TestSaveAuthorize(t *testing.T) {
 }
 
 func TestLoadAuthorize(t *testing.T) {
+	if _, ok := os.LookupEnv("TEST_K8S"); !ok {
+		t.Skip("Skip kubernetes related tests")
+		return
+	}
+
 	_, err := osinStorage.LoadAuthorize("1234")
 	if err != nil {
 		if err.Error() == mgo.ErrNotFound.Error() {
@@ -188,6 +204,11 @@ func TestLoadAuthorize(t *testing.T) {
 }
 
 func TestRemoveAuthorize(t *testing.T) {
+	if _, ok := os.LookupEnv("TEST_K8S"); !ok {
+		t.Skip("Skip kubernetes related tests")
+		return
+	}
+
 	TestSaveAuthorize(t)
 	code := "1234"
 	err := osinStorage.RemoveAuthorize(code)
@@ -202,6 +223,11 @@ func TestRemoveAuthorize(t *testing.T) {
 }
 
 func TestSaveAccess(t *testing.T) {
+	if _, ok := os.LookupEnv("TEST_K8S"); !ok {
+		t.Skip("Skip kubernetes related tests")
+		return
+	}
+
 	accessData := newTestAccessData()
 	err := osinStorage.SaveAccess(&accessData)
 	if err != nil {
@@ -210,6 +236,11 @@ func TestSaveAccess(t *testing.T) {
 }
 
 func TestLoadAccess(t *testing.T) {
+	if _, ok := os.LookupEnv("TEST_K8S"); !ok {
+		t.Skip("Skip kubernetes related tests")
+		return
+	}
+
 	token := "access_token"
 	_, err := osinStorage.LoadAccess(token)
 	if err != nil {
@@ -223,6 +254,11 @@ func TestLoadAccess(t *testing.T) {
 }
 
 func TestRemoveAccess(t *testing.T) {
+	if _, ok := os.LookupEnv("TEST_K8S"); !ok {
+		t.Skip("Skip kubernetes related tests")
+		return
+	}
+
 	token := "access_token"
 	err := osinStorage.RemoveAccess(token)
 	if err != nil {
@@ -236,6 +272,11 @@ func TestRemoveAccess(t *testing.T) {
 }
 
 func TestLoadRefresh(t *testing.T) {
+	if _, ok := os.LookupEnv("TEST_K8S"); !ok {
+		t.Skip("Skip kubernetes related tests")
+		return
+	}
+
 	token := "access_token"
 	_, err := osinStorage.LoadRefresh(token)
 	if err != nil {
@@ -249,6 +290,11 @@ func TestLoadRefresh(t *testing.T) {
 }
 
 func TestRemoveRefresh(t *testing.T) {
+	if _, ok := os.LookupEnv("TEST_K8S"); !ok {
+		t.Skip("Skip kubernetes related tests")
+		return
+	}
+
 	token := "access_token"
 	err := osinStorage.RemoveRefresh(token)
 	if err != nil {
