@@ -20,7 +20,7 @@ func main() {
 	flag.BoolVar(&noSsl, "no-ssl", false, "disable https")
 	flag.Parse()
 
-	appConfig := config.MustRead(configPath)
+	appConfig := config.Read(configPath)
 	appService := app.NewServiceProviderFromConfig(appConfig)
 	bind := net.JoinHostPort(host, port)
 
