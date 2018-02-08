@@ -24,12 +24,7 @@ func NewServiceProvider(appConfig *config.AppConfig) *ServiceProvider {
 }
 
 func NewRedisService(appConfig *config.AppConfig) *redis.Service {
-	addr := appConfig.Redis.Addr()
-	service := &redis.Service{
-		Url:  addr,
-		Pool: redis.NewPool(addr),
-	}
-	return service
+	return redis.New(&appConfig.Redis)
 }
 func NewServiceProviderFromConfig(appConfig *config.AppConfig) *ServiceProvider {
 	as := &ServiceProvider{
