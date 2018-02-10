@@ -40,6 +40,15 @@ func (u *User) SetVerificationCode(code string) {
 	u.VerificationCode = code
 }
 
+func (u *User) HasRole(role string) bool {
+	for _, r := range u.Roles {
+		if r == role {
+			return true
+		}
+	}
+	return false
+}
+
 func (u *User) GetVerificationCode() string {
 	return u.VerificationCode
 }
