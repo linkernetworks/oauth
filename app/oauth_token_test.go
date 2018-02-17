@@ -47,7 +47,7 @@ func startTokenCallback(t *testing.T) {
 
 			body, err := ioutil.ReadAll(resp.Body)
 			if err != nil {
-				t.Errorf("parse response body error: %v", err.Error)
+				t.Errorf("parse response body error: %s", err.Error())
 			}
 
 			var tokenRet map[string]interface{}
