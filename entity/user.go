@@ -30,7 +30,7 @@ type User struct {
 	Revoked               bool          `bson:"revoked" json:"revoked"`
 	JobPriority           float64       `bson:"job_priority" json:"job_priority"`
 
-	NotificationSetting NotificationSetting `bson:"notification_setting" json:"notification_setting"`
+	NotificationSetting *NotificationSetting `bson:"notification_setting" json:"notification_setting"`
 }
 
 const USER_TOKEN_LENGTH = 24
