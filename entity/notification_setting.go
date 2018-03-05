@@ -20,6 +20,8 @@ type NotificationSetting struct {
 // NewNotificationSettingFrom creates a NotificationSetting from NotificationConfig
 func NewNotificationSettingFrom(c *config.NotificationConfig) NotificationSetting {
 	return NotificationSetting{
+		EnableSMS:    c.EnableSMS,
+		EnableEmail:  c.EnableEmail,
 		OnJobStart:   c.OnJobStart,
 		OnJobSuccess: c.OnJobSuccess,
 		OnJobFail:    c.OnJobFail,
