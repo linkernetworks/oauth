@@ -29,7 +29,7 @@ type User struct {
 	UpdatedAt             int64         `bson:"updated_at,omitempty" json:"updated_at"`
 	Revoked               bool          `bson:"revoked" json:"revoked"`
 	JobPriority           float64       `bson:"job_priority" json:"job_priority"`
-	Preference            *Preference   `bson:"preference" json:"preference"`
+	Preference            Preference    `bson:"preference" json:"preference"`
 }
 
 const USER_TOKEN_LENGTH = 24
