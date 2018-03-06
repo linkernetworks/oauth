@@ -6,9 +6,9 @@ type ReceiverSetting struct {
 	EnableSMS   bool `json:"enable_sms" bson:"enable_sms"`
 	EnableEmail bool `json:"enable_email" bson:"enable_email"`
 
-	OnJobStart   bool `json:"on_job_start" bson:"on_job_start"`
-	OnJobSuccess bool `json:"on_job_success" bson:"on_job_success"`
-	OnJobFail    bool `json:"on_job_fail" bson:"on_job_fail"`
-	OnJobStop    bool `json:"on_job_stop" bson:"on_job_stop"`
-	OnJobDelete  bool `json:"on_job_delete" bson:"on_job_delete"`
+	WhenJobStart   bool `json:"when_job_start" bson:"when_job_start"`
+	WhenJobSuccess bool `json:"when_job_success" bson:"when_job_success"`
+	WhenJobFail    bool `json:"when_job_fail" bson:"when_job_fail"`
+	WhenJobStop    bool `json:"when_job_stop" bson:"when_job_stop"`
+	WhenJobDelete  bool `json:"when_job_delete" bson:"when_job_delete"`
 }
