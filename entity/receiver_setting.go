@@ -1,8 +1,8 @@
 package entity
 
-// NotificationSetting contains flags indicating whether to send SMS / Email to the user,
+// ReceiverSetting contains flags indicating whether to send SMS / Email to the user,
 // and determine what kind of messages will be sent.
-type NotificationSetting struct {
+type ReceiverSetting struct {
 	EnableSMS   bool `json:"enable_sms" bson:"enable_sms"`
 	EnableEmail bool `json:"enable_email" bson:"enable_email"`
 
