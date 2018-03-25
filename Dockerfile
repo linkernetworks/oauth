@@ -8,7 +8,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build  -a -installsuffix cgo -o ../../http_serve
 
 
 #final stage
-FROM alpine:latest  
+FROM alpine:3.7  
 RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 COPY --from=0  /go/src/bitbucket.org/linkernetworks/oauth .
