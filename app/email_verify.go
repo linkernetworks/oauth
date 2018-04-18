@@ -6,13 +6,12 @@ import (
 	"bitbucket.org/linkernetworks/aurora/src/oauth/entity"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/mongo"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/validator"
-	"bitbucket.org/linkernetworks/aurora/src/service/provider"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2/bson"
 )
 
-func checkEmailAvailability(w http.ResponseWriter, r *http.Request, appService *provider.Container) {
+func checkEmailAvailability(w http.ResponseWriter, r *http.Request, appService *ServiceProvider) {
 	mongoContext := appService.MongoClient.NewContext()
 	defer mongoContext.Close()
 

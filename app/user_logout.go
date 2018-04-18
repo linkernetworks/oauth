@@ -4,10 +4,9 @@ import (
 	"net/http"
 
 	"bitbucket.org/linkernetworks/aurora/src/oauth/validator"
-	"bitbucket.org/linkernetworks/aurora/src/service/provider"
 )
 
-func UserLogout(w http.ResponseWriter, r *http.Request, appService *provider.Container) {
+func UserLogout(w http.ResponseWriter, r *http.Request, appService *ServiceProvider) {
 	locale := MustLocaleFunc(r)
 	if len(r.URL.Query()["user_email"]) < 1 {
 		toJson(w, FormActionResponse{

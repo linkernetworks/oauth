@@ -15,7 +15,6 @@ import (
 	"bitbucket.org/linkernetworks/aurora/src/oauth/mongo"
 	apptesting "bitbucket.org/linkernetworks/aurora/src/oauth/testing"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/util"
-	"bitbucket.org/linkernetworks/aurora/src/service/provider"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
@@ -175,7 +174,7 @@ func PostFormWithHeader(url string, data url.Values, headers map[string]string) 
 	return ret
 }
 
-func setOAuthAuthorizeCookie(w http.ResponseWriter, r *http.Request, appService *provider.Container) {
+func setOAuthAuthorizeCookie(w http.ResponseWriter, r *http.Request, appService *ServiceProvider) {
 	session, err := appService.SessionStore.Get(r, "session-name")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -186,7 +185,7 @@ func setOAuthAuthorizeCookie(w http.ResponseWriter, r *http.Request, appService 
 	toJson(w, nil)
 }
 
-func setUserVerifyCookie(w http.ResponseWriter, r *http.Request, appService *provider.Container) {
+func setUserVerifyCookie(w http.ResponseWriter, r *http.Request, appService *ServiceProvider) {
 	session, err := appService.SessionStore.Get(r, "session-name")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

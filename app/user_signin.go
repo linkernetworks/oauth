@@ -8,14 +8,13 @@ import (
 	"bitbucket.org/linkernetworks/aurora/src/oauth/mongo"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/util"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/validator"
-	"bitbucket.org/linkernetworks/aurora/src/service/provider"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2/bson"
 )
 
 // UserSignIn handle user signin logic
-func UserSignIn(w http.ResponseWriter, r *http.Request, appService *provider.Container) {
+func UserSignIn(w http.ResponseWriter, r *http.Request, appService *ServiceProvider) {
 	mongoContext := appService.MongoClient.NewContext()
 	defer mongoContext.Close()
 	locale := MustLocaleFunc(r)
