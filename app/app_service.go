@@ -6,6 +6,7 @@ import (
 	"bitbucket.org/linkernetworks/aurora/src/oauth/mongo"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/sms"
 	"bitbucket.org/linkernetworks/aurora/src/service/redis"
+	"bitbucket.org/linkernetworks/aurora/src/service/provider"
 	"github.com/RangelReale/osin"
 	"github.com/gin-contrib/sessions"
 )
@@ -19,14 +20,14 @@ type ServiceProvider struct {
 	SessionStore sessions.CookieStore
 }
 
-func NewServiceProvider(appConfig *config.AppConfig) *ServiceProvider {
+func NewServiceProvider(appConfig *config.AppConfig) *provider.Container {
 	return NewServiceProviderFromConfig(appConfig)
 }
 
 func NewRedisService(appConfig *config.AppConfig) *redis.Service {
 	return redis.New(&appConfig.Redis)
 }
-func NewServiceProviderFromConfig(appConfig *config.AppConfig) *ServiceProvider {
+func NewServiceProviderFromConfig(appConfig *config.AppConfig) *provider.Container {
 	as := &ServiceProvider{
 		OAuthConfig:  &appConfig.OAuthConfig,
 		MongoClient:  mongo.NewMongoClient(appConfig.MongoConfig),

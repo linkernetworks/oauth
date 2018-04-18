@@ -8,12 +8,13 @@ import (
 	"bitbucket.org/linkernetworks/aurora/src/oauth/entity"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/mongo"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/util"
+	"bitbucket.org/linkernetworks/aurora/src/service/provider"
 	"github.com/RangelReale/osin"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2/bson"
 )
 
-func OAuthToken(w http.ResponseWriter, r *http.Request, appService *ServiceProvider) {
+func OAuthToken(w http.ResponseWriter, r *http.Request, appService *provider.Container) {
 	resp := appService.OsinServer.NewResponse()
 	defer resp.Close()
 	mongoContext := appService.MongoClient.NewContext()

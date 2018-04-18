@@ -9,12 +9,13 @@ import (
 	"bitbucket.org/linkernetworks/aurora/src/oauth/util"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/validator"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/verification"
+	"bitbucket.org/linkernetworks/aurora/src/service/provider"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2/bson"
 )
 
 // UserSignUp handle user signup
-func UserSignUp(w http.ResponseWriter, r *http.Request, appService *ServiceProvider) {
+func UserSignUp(w http.ResponseWriter, r *http.Request, appService *provider.Container) {
 	mongoContext := appService.MongoClient.NewContext()
 	defer mongoContext.Close()
 	locale := MustLocaleFunc(r)

@@ -6,6 +6,7 @@ import (
 	"github.com/nicksnyder/go-i18n/i18n"
 	"github.com/sirupsen/logrus"
 	"net/http"
+	"bitbucket.org/linkernetworks/aurora/src/service/provider"
 )
 
 const (
@@ -13,9 +14,9 @@ const (
 	CERT_PUBLIC_KEY  = "./tls-key/server.crt"
 )
 
-type RequestHandler func(w http.ResponseWriter, r *http.Request, as *ServiceProvider)
+type RequestHandler func(w http.ResponseWriter, r *http.Request, as *provider.Container)
 
-func AppRoutes(appService *ServiceProvider) *mux.Router {
+func AppRoutes(appService *provider.Container) *mux.Router {
 	// warning: if use sessionStor after r.Route, server will panic:
 	// Key "github.com/gin-contrib/sessions" does not exist
 	r := mux.NewRouter()
@@ -69,16 +70,16 @@ func AppRoutes(appService *ServiceProvider) *mux.Router {
 	return r
 }
 
-func Start(bind string, appService *ServiceProvider) error {
+func Start(bind string, appService *provider.Container) error {
 	return http.ListenAndServe(bind, AppRoutes(appService))
 }
 
-func StartSsl(bind string, appService *ServiceProvider) error {
+func StartSsl(bind string, appService *provider.Container) error {
 	return http.ListenAndServeTLS(bind, CERT_PUBLIC_KEY, CERT_PRIVATE_KEY, AppRoutes(appService))
 }
 
 // CompositeServiceProvider apply mongo client to HandlerFunc
-func CompositeServiceProvider(appService *ServiceProvider, handler RequestHandler) http.HandlerFunc {
+func CompositeServiceProvider(appService *provider.Container, handler RequestHandler) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		handler(w, r, appService)
 	}

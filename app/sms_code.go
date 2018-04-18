@@ -7,13 +7,14 @@ import (
 	"bitbucket.org/linkernetworks/aurora/src/oauth/entity"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/mongo"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/verification"
+	"bitbucket.org/linkernetworks/aurora/src/service/provider"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2/bson"
 )
 
 // SmsCode send verification sms code when registering device
-func SmsCode(w http.ResponseWriter, r *http.Request, appService *ServiceProvider) {
+func SmsCode(w http.ResponseWriter, r *http.Request, appService *provider.Container) {
 	mongoContext := appService.MongoClient.NewContext()
 	defer mongoContext.Close()
 	var user entity.User

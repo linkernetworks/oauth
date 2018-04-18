@@ -6,13 +6,14 @@ import (
 	"bitbucket.org/linkernetworks/aurora/src/oauth/entity"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/mongo"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/validator"
+	"bitbucket.org/linkernetworks/aurora/src/service/provider"
 	"github.com/RangelReale/osin"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2/bson"
 )
 
 // OAuthAuthorize OAuthAuthorize handler
-func OAuthAuthorize(w http.ResponseWriter, r *http.Request, appService *ServiceProvider) {
+func OAuthAuthorize(w http.ResponseWriter, r *http.Request, appService *provider.Container) {
 	// redirectUrl := "/signin?" + c.Request.URL.RawQuery
 	oauthQueries := r.URL.RawQuery
 	mongoContext := appService.MongoClient.NewContext()

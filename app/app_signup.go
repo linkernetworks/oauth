@@ -7,13 +7,14 @@ import (
 	"bitbucket.org/linkernetworks/aurora/src/oauth/mongo"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/util"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/validator"
+	"bitbucket.org/linkernetworks/aurora/src/service/provider"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2/bson"
 )
 
 // AppSignup handler app signup
-func AppSignup(w http.ResponseWriter, r *http.Request, appService *ServiceProvider) {
+func AppSignup(w http.ResponseWriter, r *http.Request, appService *provider.Container) {
 	mongoContext := appService.MongoClient.NewContext()
 	defer mongoContext.Close()
 	var app entity.Application

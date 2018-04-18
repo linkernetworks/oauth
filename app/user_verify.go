@@ -6,12 +6,13 @@ import (
 	"bitbucket.org/linkernetworks/aurora/src/oauth/entity"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/mongo"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/verification"
+	"bitbucket.org/linkernetworks/aurora/src/service/provider"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2/bson"
 )
 
 // UserVerify verify user by sms verification code.
-func UserVerify(w http.ResponseWriter, r *http.Request, appService *ServiceProvider) {
+func UserVerify(w http.ResponseWriter, r *http.Request, appService *provider.Container) {
 	mongoContext := appService.MongoClient.NewContext()
 	defer mongoContext.Close()
 	session, err := appService.SessionStore.Get(r, "session-name")
