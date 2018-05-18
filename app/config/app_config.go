@@ -1,17 +1,17 @@
 package config
 
 import (
-	"bitbucket.org/linkernetworks/aurora/src/config"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/mongo"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/sms"
+	"bitbucket.org/linkernetworks/aurora/src/service/redis"
 )
 
 // AppConfig
 type AppConfig struct {
-	OAuthConfig  OAuthConfig        `json:"oauth"`
-	MongoConfig  mongo.MongoConfig  `json:"mongo"`
-	TwilioConfig sms.TwilioConfig   `json:"twilio"`
-	Redis        config.RedisConfig `json:"redis"`
+	OAuthConfig  OAuthConfig       `json:"oauth"`
+	MongoConfig  mongo.MongoConfig `json:"mongo"`
+	TwilioConfig sms.TwilioConfig  `json:"twilio"`
+	Redis        redis.RedisConfig `json:"redis"`
 }
 
 // OAuthConfig
