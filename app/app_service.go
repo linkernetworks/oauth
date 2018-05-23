@@ -5,7 +5,7 @@ import (
 	"bitbucket.org/linkernetworks/aurora/src/oauth/app/storage"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/mongo"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/sms"
-	"bitbucket.org/linkernetworks/aurora/src/service/redis"
+	"github.com/linkernetworks/redis"
 	"github.com/RangelReale/osin"
 	"github.com/gin-contrib/sessions"
 )

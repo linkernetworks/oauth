@@ -3,7 +3,7 @@ package config
 import (
 	"bitbucket.org/linkernetworks/aurora/src/oauth/mongo"
 	"bitbucket.org/linkernetworks/aurora/src/oauth/sms"
-	"bitbucket.org/linkernetworks/aurora/src/service/redis"
+	"github.com/linkernetworks/redis"
 )
 
 // AppConfig
