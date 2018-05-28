@@ -9,6 +9,12 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
+const (
+	UserCollectionName string = "users"
+	USER_TOKEN_LENGTH         = 24
+	TOKEN_KEY                 = "LinkerNetworks.Inc"
+)
+
 type User struct {
 	ID                    bson.ObjectId `bson:"_id" json:"id"`
 	SerialNumber          string        `bson:"serial_number" json:"serial_number"`
@@ -33,8 +39,13 @@ type User struct {
 	Preference            Preference    `bson:"preference" json:"preference"`
 }
 
-const USER_TOKEN_LENGTH = 24
-const TOKEN_KEY = "LinkerNetworks.Inc"
+func (u *User) GetCollection() string {
+	return UserCollectionName
+}
+
+func (u *User) FullName() string {
+	return u.FirstName + " " + u.LastName
+}
 
 // Implements VerificationProcessReceiver
 func (u *User) SetVerificationCode(code string) {
