@@ -69,7 +69,9 @@ func UserSignUp(w http.ResponseWriter, r *http.Request, appService *ServiceProvi
 
 	// user not existed in db, insert
 	user.ID = bson.NewObjectId()
-	encrypted, err := util.EncryptPassword(user.Password)
+
+	salt := appService.OAuthConfig.Encryption.Salt
+	encrypted, err := util.EncryptPassword(user.Password, salt)
 	if err != nil {
 		toJson(w, FormActionResponse{
 			Error:   true,

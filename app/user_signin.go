@@ -42,7 +42,8 @@ func UserSignIn(w http.ResponseWriter, r *http.Request, appService *ServiceProvi
 	}
 
 	// check if user existed in db
-	encrypted, err := util.EncryptPassword(user.Password)
+	salt := appService.OAuthConfig.Encryption.Salt
+	encrypted, err := util.EncryptPassword(user.Password, salt)
 	if err != nil {
 		toJson(w, FormActionResponse{
 			Error:   true,

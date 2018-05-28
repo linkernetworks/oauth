@@ -2,7 +2,14 @@
     "oauth": {
         "expiryDuration": 3600,
         "host": "",
-        "port": ""
+        "port": "",
+        "passwordEnctyption":{
+          "salt": "AES$%x09^@s!d:<X",
+          "n": 16384,
+          "r": 8,
+          "p": 1,
+          "length": 32
+        }
     },
     "mongo": {
         "host": "localhost",

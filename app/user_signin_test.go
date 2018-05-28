@@ -1,3 +1,5 @@
+// +build integration
+
 package app
 
 import (
@@ -28,7 +30,7 @@ func TestUserSignIn(t *testing.T) {
 
 	// add user without verified for test
 	user := newTestUser()
-	encrypted, err := util.EncryptPassword(user.Password)
+	encrypted, err := util.EncryptPassword(user.Password, TEST_SALT)
 	assert.NoError(t, err)
 	user.Password = encrypted
 	user.Verified = false

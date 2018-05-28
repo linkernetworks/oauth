@@ -29,7 +29,9 @@ func OAuthToken(w http.ResponseWriter, r *http.Request, appService *ServiceProvi
 			// check user table to validate user
 			var user entity.User
 			user.Email, user.Password = ar.Username, ar.Password
-			encrypted, err := util.EncryptPassword(user.Password)
+
+			salt := appService.OAuthConfig.Encryption.Salt
+			encrypted, err := util.EncryptPassword(user.Password, salt)
 			if err != nil {
 				resp.IsError = true
 				resp.InternalError = err

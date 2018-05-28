@@ -16,7 +16,16 @@ type AppConfig struct {
 
 // OAuthConfig
 type OAuthConfig struct {
-	ExpiryDuration int64  `json:"expiryDuration"` // how many seconds token will expired
-	Host           string `json:"host"`
-	Port           string `json:"port"`
+	ExpiryDuration int64            `json:"expiryDuration"` // how many seconds token will expired
+	Host           string           `json:"host"`
+	Port           string           `json:"port"`
+	Encryption     EncryptionConfig `json:"encription"`
+}
+
+type EncryptionConfig struct {
+	Salt   string `json:"salt"`
+	N      int    `json:"n"`
+	R      int    `json:"r"`
+	P      int    `json:"p"`
+	Length int    `json:"length"`
 }

@@ -1,3 +1,5 @@
+// +build integration
+
 package app
 
 import (
@@ -8,6 +10,8 @@ import (
 	"bitbucket.org/linkernetworks/aurora/src/oauth/util"
 	"github.com/stretchr/testify/assert"
 )
+
+const TEST_SALT = "12345678"
 
 func TestUserSignInI18n(t *testing.T) {
 
@@ -32,7 +36,7 @@ func TestUserSignInI18n(t *testing.T) {
 
 	// add user without verified for test
 	user := newTestUser()
-	encrypted, err := util.EncryptPassword(user.Password)
+	encrypted, err := util.EncryptPassword(user.Password, TEST_SALT)
 	assert.NoError(t, err)
 	user.Password = encrypted
 	user.Verified = false
@@ -67,7 +71,7 @@ func TestUserSignInI18n(t *testing.T) {
 	assert.Equal(t, twm1["message"], twLocale(ErrUserNotExisted))
 	assert.Equal(t, twm1["error"], true)
 
-	encrypted, err = util.EncryptPassword(twuser.Password)
+	encrypted, err = util.EncryptPassword(twuser.Password, TEST_SALT)
 	assert.NoError(t, err)
 	twuser.Password = encrypted
 	twuser.Verified = false
