@@ -3,7 +3,7 @@ package app
 import (
 	"net/http"
 
-	"bitbucket.org/linkernetworks/aurora/src/oauth/validator"
+	"github.com/linkernetworks/oauth/validator"
 )
 
 func UserLogout(w http.ResponseWriter, r *http.Request, appService *ServiceProvider) {

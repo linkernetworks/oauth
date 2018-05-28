@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 
-	"bitbucket.org/linkernetworks/aurora/src/oauth/app/config"
+	"github.com/linkernetworks/oauth/app/config"
 )
 
 func TestNewServiceProvider(t *testing.T) {

@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"bitbucket.org/linkernetworks/aurora/src/oauth/util"
+	"github.com/linkernetworks/oauth/util"
 	"gopkg.in/mgo.v2/bson"
 )
 

@@ -1,13 +1,13 @@
 package app
 
 import (
-	"bitbucket.org/linkernetworks/aurora/src/oauth/app/config"
-	"bitbucket.org/linkernetworks/aurora/src/oauth/app/storage"
-	"bitbucket.org/linkernetworks/aurora/src/oauth/mongo"
-	"bitbucket.org/linkernetworks/aurora/src/oauth/sms"
-	"github.com/linkernetworks/redis"
 	"github.com/RangelReale/osin"
-	"github.com/gin-contrib/sessions"
+	"github.com/gorilla/sessions"
+	"github.com/linkernetworks/oauth/app/config"
+	"github.com/linkernetworks/oauth/app/storage"
+	"github.com/linkernetworks/oauth/mongo"
+	"github.com/linkernetworks/oauth/sms"
+	"github.com/linkernetworks/redis"
 )
 
 // ServiceProvider wrape dependencies of oauth api
@@ -16,7 +16,7 @@ type ServiceProvider struct {
 	SmsClient    *sms.SMSClient
 	OAuthConfig  *config.OAuthConfig
 	OsinServer   *osin.Server
-	SessionStore sessions.CookieStore
+	SessionStore *sessions.CookieStore
 }
 
 func NewServiceProvider(appConfig *config.AppConfig) *ServiceProvider {

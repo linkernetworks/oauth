@@ -3,7 +3,7 @@ package storage
 import (
 	"time"
 
-	"bitbucket.org/linkernetworks/aurora/src/oauth/entity"
+	"github.com/linkernetworks/oauth/entity"
 )
 
 // AccessData represents an access grant (tokens, expiration, client, etc)

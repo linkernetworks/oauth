@@ -5,9 +5,9 @@ import (
 
 	"net/http"
 
-	"bitbucket.org/linkernetworks/aurora/src/oauth/entity"
-	"bitbucket.org/linkernetworks/aurora/src/oauth/mongo"
-	"bitbucket.org/linkernetworks/aurora/src/oauth/util"
+	"github.com/linkernetworks/oauth/entity"
+	"github.com/linkernetworks/oauth/mongo"
+	"github.com/linkernetworks/oauth/util"
 	"github.com/RangelReale/osin"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2/bson"

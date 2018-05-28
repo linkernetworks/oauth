@@ -5,8 +5,8 @@ import (
 	"log"
 	"net"
 
-	"bitbucket.org/linkernetworks/aurora/src/oauth/app"
-	"bitbucket.org/linkernetworks/aurora/src/oauth/app/config"
+	"github.com/linkernetworks/oauth/app"
+	"github.com/linkernetworks/oauth/app/config"
 )
 
 func main() {

@@ -1,8 +1,8 @@
 package config
 
 import (
-	"bitbucket.org/linkernetworks/aurora/src/oauth/mongo"
-	"bitbucket.org/linkernetworks/aurora/src/oauth/sms"
+	"github.com/linkernetworks/oauth/mongo"
+	"github.com/linkernetworks/oauth/sms"
 	"github.com/linkernetworks/redis"
 )
 

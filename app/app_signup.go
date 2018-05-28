@@ -3,10 +3,10 @@ package app
 import (
 	"net/http"
 
-	"bitbucket.org/linkernetworks/aurora/src/oauth/entity"
-	"bitbucket.org/linkernetworks/aurora/src/oauth/mongo"
-	"bitbucket.org/linkernetworks/aurora/src/oauth/util"
-	"bitbucket.org/linkernetworks/aurora/src/oauth/validator"
+	"github.com/linkernetworks/oauth/entity"
+	"github.com/linkernetworks/oauth/mongo"
+	"github.com/linkernetworks/oauth/util"
+	"github.com/linkernetworks/oauth/validator"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2/bson"

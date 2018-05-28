@@ -3,7 +3,7 @@ package entity
 import (
 	"testing"
 
-	"bitbucket.org/linkernetworks/aurora/src/oauth/util"
+	"github.com/linkernetworks/oauth/util"
 	"github.com/stretchr/testify/assert"
 	"gopkg.in/mgo.v2/bson"
 )

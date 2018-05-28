@@ -1,7 +1,7 @@
 package verification
 
 import (
-	"bitbucket.org/linkernetworks/aurora/src/oauth/sms"
+	"github.com/linkernetworks/oauth/sms"
 	"errors"
 	"fmt"
 )
