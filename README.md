@@ -35,36 +35,16 @@ Setting up Paths
     export PATH=~/go/bin:$PATH
 
 
-Deploy
----------------------------
-
-Use git instead of mercurial for getting the source repository:
-
-    git config --global url."git@bitbucket.org:".insteadOf "https://bitbucket.org/"
-
-
-Use go get to install the server command:
-
-    go get -u -x bitbucket.org/linkernetworks/oauth/cmd/lnk-auth
-
-
-
 Build
 ---------------------------
 
-1. Put or link `oauth` dir to $GOPATH/src
-
-        SRC=$(echo $GOPATH | perl -pe '@_ = split /:/, $_; $_ = shift @_;')
-        TARGET=$SRC/src/bitbucket.org/linkernetworks/oauth
-        [[ ! -e $TARGET ]] && ln -s $PWD $SRC/src/bitbucket.org/linkernetworks/oauth
-
-2. Sync golang dependencies
+1. Sync golang dependencies
 
     ```
     govendor sync
     ```
 
-3. Build the binary
+2. Build the binary
 
     ```
     make
@@ -77,19 +57,19 @@ Build
     ```
 
 
-4. Change properties in `config/default.json`
+3. Change properties in `config/default.json`
 
     ```
     config config/default.json
     ```
 
-5. Setup portal static files
+4. Setup portal static files
 
 
     scripts/setup-static-files
 
 
-6. Run
+5. Run
 
     ```
     ./lnk-auth 8.8.8.8:3031
