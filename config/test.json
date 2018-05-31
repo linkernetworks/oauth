@@ -3,7 +3,7 @@
         "expiryDuration": 3600,
         "host": "",
         "port": "",
-        "passwordEnctyption":{
+        "encryption":{
           "salt": "AES$%x09^@s!d:<X",
           "n": 16384,
           "r": 8,

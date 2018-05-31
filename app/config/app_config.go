@@ -19,7 +19,7 @@ type OAuthConfig struct {
 	ExpiryDuration int64            `json:"expiryDuration"` // how many seconds token will expired
 	Host           string           `json:"host"`
 	Port           string           `json:"port"`
-	Encryption     EncryptionConfig `json:"encription"`
+	Encryption     EncryptionConfig `json:"encryption"`
 }
 
 type EncryptionConfig struct {
