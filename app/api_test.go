@@ -44,7 +44,7 @@ func init() {
 		logrus.Fatal("config not found", err)
 	}
 	appConfig = config.Read(configPath)
-	mongoClient = mongo.NewMongoClient(appConfig.MongoConfig)
+	mongoClient = mongo.NewMongoClient(*appConfig.MongoConfig)
 	mongoContext = mongoClient.NewContext()
 
 	// prepare test config
@@ -277,7 +277,7 @@ func setupAPIServer(t *testing.T) {
 	}
 
 	go func(configPath string) {
-		appService := NewServiceProviderFromConfig(appConfig)
+		appService := NewServiceProviderFromConfig(*appConfig)
 
 		// warning: if use sessionStor after r.Route, server will panic:
 		// Key "github.com/gin-contrib/sessions" does not exist

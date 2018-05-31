@@ -19,27 +19,27 @@ type ServiceProvider struct {
 	SessionStore *sessions.CookieStore
 }
 
-func NewServiceProvider(appConfig *config.AppConfig) *ServiceProvider {
+func NewServiceProvider(appConfig config.AppConfig) *ServiceProvider {
 	return NewServiceProviderFromConfig(appConfig)
 }
 
-func NewRedisService(appConfig *config.AppConfig) *redis.Service {
-	return redis.New(&appConfig.Redis)
+func NewRedisService(appConfig config.AppConfig) *redis.Service {
+	return redis.New(appConfig.Redis)
 }
-func NewServiceProviderFromConfig(appConfig *config.AppConfig) *ServiceProvider {
+func NewServiceProviderFromConfig(appConfig config.AppConfig) *ServiceProvider {
 	as := &ServiceProvider{
-		OAuthConfig:  &appConfig.OAuthConfig,
-		MongoClient:  mongo.NewMongoClient(appConfig.MongoConfig),
+		OAuthConfig:  appConfig.OAuthConfig,
+		MongoClient:  mongo.NewMongoClient(*appConfig.MongoConfig),
 		SessionStore: sessions.NewCookieStore([]byte("something-very-secret")),
 	}
 
 	sid := appConfig.TwilioConfig.Sid
 	if sid != "" {
-		as.SmsClient = sms.NewSMSClientFromConfig(appConfig.TwilioConfig)
+		as.SmsClient = sms.NewSMSClientFromConfig(*appConfig.TwilioConfig)
 	}
 
 	// init osin.Server
-	osinStorage := storage.NewOsinStorage(appConfig.MongoConfig)
+	osinStorage := storage.NewOsinStorage(*appConfig.MongoConfig)
 	sconfig := osin.NewServerConfig()
 	sconfig.AllowedAuthorizeTypes = osin.AllowedAuthorizeType{osin.CODE, osin.TOKEN}
 	sconfig.AllowedAccessTypes = osin.AllowedAccessType{osin.AUTHORIZATION_CODE,

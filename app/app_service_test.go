@@ -15,7 +15,7 @@ func TestNewServiceProvider(t *testing.T) {
 
 	if configPath, found := os.LookupEnv("OAUTH_CONFIG_PATH"); found {
 		appConfig := config.Read(configPath)
-		as := NewServiceProvider(appConfig)
+		as := NewServiceProvider(*appConfig)
 		if as.OAuthConfig.ExpiryDuration != 3600 {
 			t.Error()
 		}

@@ -21,7 +21,7 @@ func main() {
 	flag.Parse()
 
 	appConfig := config.Read(configPath)
-	appService := app.NewServiceProviderFromConfig(appConfig)
+	appService := app.NewServiceProviderFromConfig(*appConfig)
 	bind := net.JoinHostPort(host, port)
 
 	if noSsl {
