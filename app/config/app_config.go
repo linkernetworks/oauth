@@ -27,5 +27,5 @@ type EncryptionConfig struct {
 	N      int    `json:"n"`
 	R      int    `json:"r"`
 	P      int    `json:"p"`
-	Length int    `json:"leng"`
+	Length int    `json:"len"`
 }
