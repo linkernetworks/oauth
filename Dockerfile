@@ -1,15 +1,20 @@
-#Build stage
-FROM golang:1.8.3
-MAINTAINER Evan Lin <evanlin@linkernetworks.com>
-COPY . /go/src/github.com/linkernetworks/oauth 
-WORKDIR /go/src/github.com/linkernetworks/oauth/cmd/lnk-auth
-RUN go get github.com/stretchr/testify/mock
-RUN CGO_ENABLED=0 GOOS=linux go build  -a -installsuffix cgo -o ../../http_server
+##
+## Build stage
+##
+FROM golang:1.10-alpine3.7
+RUN apk --no-cache add make
+WORKDIR /go/src/github.com/linkernetworks/oauth
+COPY . ./
 
+ENV CGO_ENABLED 0
+ENV GOOS linux
+RUN make src.build
 
-#final stage
-FROM alpine:3.7  
-RUN apk --no-cache add ca-certificates
+##
+## final image
+##
+FROM alpine:3.7
 WORKDIR /root/
-COPY --from=0  /go/src/github.com/linkernetworks/oauth .
-CMD ["./http_server"]  
+RUN apk --no-cache add ca-certificates
+COPY --from=0  /go/src/github.com/linkernetworks/oauth/build/src/cmd/lnk-auth/lnk-auth .
+ENTRYPOINT ["/root/lnk-auth"]
