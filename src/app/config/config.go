@@ -28,7 +28,7 @@ func Read(configPath string) *AppConfig {
 func ReadCurrent() *AppConfig {
 	configPath := os.Getenv("OAUTH_CONFIG_PATH")
 	if configPath == "" {
-		configPath = "../../config/default.json"
+		configPath = "../../../config/default.json"
 	}
 
 	return Read(configPath)

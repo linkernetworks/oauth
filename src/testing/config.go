@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 )
 
-const LOCAL_TESTING_CONFIG = "../config/test-local.json"
-const DEFAULT_TESTING_CONFIG = "../config/test.json"
+const LOCAL_TESTING_CONFIG = "../../config/test-local.json"
+const DEFAULT_TESTING_CONFIG = "../../config/test.json"
 
 func GetCurrentConfigPath() (string, error) {
 	if path, found := os.LookupEnv("OAUTH_CONFIG_PATH"); found {

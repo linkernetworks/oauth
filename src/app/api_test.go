@@ -321,9 +321,9 @@ func setupAPIServer(t *testing.T) {
 		r.HandleFunc("/services/oauth/token", CompositeServiceProvider(appService, OAuthToken))
 
 		// load i18n files, can be done in main func
-		i18n.MustLoadTranslationFile("../config/locale/en-us.all.json")
-		i18n.MustLoadTranslationFile("../config/locale/zh.all.json")
-		i18n.MustLoadTranslationFile("../config/locale/zh-tw.all.json")
+		i18n.MustLoadTranslationFile("../../config/locale/en-us.all.json")
+		i18n.MustLoadTranslationFile("../../config/locale/zh.all.json")
+		i18n.MustLoadTranslationFile("../../config/locale/zh-tw.all.json")
 
 		http.ListenAndServe(":"+oauthPort, r)
 		logrus.Infof("start api server success.")

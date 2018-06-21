@@ -8,7 +8,7 @@ import (
 )
 
 func TestRead(t *testing.T) {
-	configPath := "../../config/test.json"
+	configPath := "../../../config/test.json"
 	// test get dev props
 	appConfig := Read(configPath)
 
