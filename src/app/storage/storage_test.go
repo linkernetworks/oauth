@@ -8,9 +8,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/linkernetworks/oauth/entity"
-	"github.com/linkernetworks/oauth/mongo"
-	"github.com/linkernetworks/oauth/util"
+	"github.com/linkernetworks/oauth/src/entity"
+	"github.com/linkernetworks/oauth/src/mongo"
+	"github.com/linkernetworks/oauth/src/util"
 	"github.com/RangelReale/osin"
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"

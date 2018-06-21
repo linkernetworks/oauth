@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/linkernetworks/oauth/app/config"
+	"github.com/linkernetworks/oauth/src/app/config"
 )
 
 func TestNewServiceProvider(t *testing.T) {

@@ -7,7 +7,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/linkernetworks/oauth/util"
+	"github.com/linkernetworks/oauth/src/util"
 	"github.com/stretchr/testify/assert"
 )
 

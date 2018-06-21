@@ -3,10 +3,10 @@ package app
 import (
 	"github.com/RangelReale/osin"
 	"github.com/gorilla/sessions"
-	"github.com/linkernetworks/oauth/app/config"
-	"github.com/linkernetworks/oauth/app/storage"
-	"github.com/linkernetworks/oauth/mongo"
-	"github.com/linkernetworks/oauth/sms"
+	"github.com/linkernetworks/oauth/src/app/config"
+	"github.com/linkernetworks/oauth/src/app/storage"
+	"github.com/linkernetworks/oauth/src/mongo"
+	"github.com/linkernetworks/oauth/src/sms"
 	"github.com/linkernetworks/redis"
 )
 

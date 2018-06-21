@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/linkernetworks/oauth/entity"
-	"github.com/linkernetworks/oauth/mongo"
-	"github.com/linkernetworks/oauth/util"
-	"github.com/linkernetworks/oauth/validator"
-	"github.com/linkernetworks/oauth/verification"
+	"github.com/linkernetworks/oauth/src/entity"
+	"github.com/linkernetworks/oauth/src/mongo"
+	"github.com/linkernetworks/oauth/src/util"
+	"github.com/linkernetworks/oauth/src/validator"
+	"github.com/linkernetworks/oauth/src/verification"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2/bson"
 )

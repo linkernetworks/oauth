@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"github.com/linkernetworks/oauth/util"
+	"github.com/linkernetworks/oauth/src/util"
 	"gopkg.in/mgo.v2/bson"
 )
 

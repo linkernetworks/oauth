@@ -1,7 +1,7 @@
 package verification
 
 import (
-	"github.com/linkernetworks/oauth/sms"
+	"github.com/linkernetworks/oauth/src/sms"
 	"errors"
 	"fmt"
 )

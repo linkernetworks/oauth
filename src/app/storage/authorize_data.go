@@ -3,7 +3,7 @@ package storage
 import (
 	"time"
 
-	"github.com/linkernetworks/oauth/entity"
+	"github.com/linkernetworks/oauth/src/entity"
 )
 
 type AuthorizeData struct {

@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/linkernetworks/oauth/entity"
-	"github.com/linkernetworks/oauth/mongo"
-	"github.com/linkernetworks/oauth/verification"
+	"github.com/linkernetworks/oauth/src/entity"
+	"github.com/linkernetworks/oauth/src/mongo"
+	"github.com/linkernetworks/oauth/src/verification"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2/bson"

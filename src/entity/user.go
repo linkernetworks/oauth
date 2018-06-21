@@ -3,7 +3,7 @@ package entity
 import (
 	"time"
 
-	"github.com/linkernetworks/oauth/util"
+	"github.com/linkernetworks/oauth/src/util"
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2/bson"

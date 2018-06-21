@@ -6,8 +6,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/linkernetworks/oauth/entity"
-	"github.com/linkernetworks/oauth/util"
+	"github.com/linkernetworks/oauth/src/entity"
+	"github.com/linkernetworks/oauth/src/util"
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 	"gopkg.in/mgo.v2/bson"

@@ -3,8 +3,8 @@ package storage
 import (
 	"time"
 
-	"github.com/linkernetworks/oauth/entity"
-	"github.com/linkernetworks/oauth/mongo"
+	"github.com/linkernetworks/oauth/src/entity"
+	"github.com/linkernetworks/oauth/src/mongo"
 	"github.com/RangelReale/osin"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2"

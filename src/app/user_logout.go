@@ -3,7 +3,7 @@ package app
 import (
 	"net/http"
 
-	"github.com/linkernetworks/oauth/validator"
+	"github.com/linkernetworks/oauth/src/validator"
 )
 
 func UserLogout(w http.ResponseWriter, r *http.Request, appService *ServiceProvider) {

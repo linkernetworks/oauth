@@ -5,8 +5,8 @@ import (
 	"log"
 	"net"
 
-	"github.com/linkernetworks/oauth/app"
-	"github.com/linkernetworks/oauth/app/config"
+	"github.com/linkernetworks/oauth/src/app"
+	"github.com/linkernetworks/oauth/src/app/config"
 )
 
 func main() {
