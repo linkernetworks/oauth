@@ -1,4 +1,4 @@
-Linker OAuth Service [![Build Status](https://travis-ci.org/linkernetworks/oauth.svg?branch=develop)](https://travis-ci.org/linkernetworks/oauth)
+Linker OAuth Service [![Build Status](https://travis-ci.org/linkernetworks/oauth.svg?branch=develop)](https://travis-ci.org/linkernetworks/oauth) [![codecov](https://codecov.io/gh/linkernetworks/oauth/branch/develop/graph/badge.svg)](https://codecov.io/gh/linkernetworks/oauth)
 ===========================
 
 Requirement
