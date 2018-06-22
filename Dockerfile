@@ -16,5 +16,5 @@ RUN make src.build
 FROM alpine:3.7
 WORKDIR /root/
 RUN apk --no-cache add ca-certificates
-COPY --from=0  /go/src/github.com/linkernetworks/oauth/build/src/cmd/lnk-auth/lnk-auth .
-ENTRYPOINT ["/root/lnk-auth"]
+COPY --from=0  /go/src/github.com/linkernetworks/oauth/build/src/cmd/oauth_server/oauth_server .
+ENTRYPOINT ["/root/oauth_server"]

@@ -9,6 +9,10 @@ services:
 go:
   - "1.10.x"
 
+node_js:
+  - "iojs"
+  - "7"
+
 cache:
   directories:
   - vendor/github.com
@@ -17,13 +21,13 @@ cache:
 
 before_install:
   - go get -u github.com/kardianos/govendor
+  - npm install -g bats
 
 install:
   - make pre-build
 
 script:
-  - make build
-  - make src.test-coverage
+  - make build test src.test-coverage
   - export TAG=$(echo $TRAVIS_BRANCH | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]/-/g' )
   - docker build --tag linkernetworks/oauth:$TAG .
 
