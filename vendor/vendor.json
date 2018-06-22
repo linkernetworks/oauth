@@ -105,6 +105,12 @@
 			"revisionTime": "2018-06-06T15:52:11Z"
 		},
 		{
+			"checksumSHA1": "HMoZ70PrmL9dN5Kxs0dyZa/Z5k4=",
+			"path": "github.com/imdario/mergo",
+			"revision": "9316a62528ac99aaecb4e47eadd6dc8aa6533d58",
+			"revisionTime": "2018-06-08T14:01:56Z"
+		},
+		{
 			"checksumSHA1": "NY84PNFBfNvxJgNEMVKUOJhcVsY=",
 			"path": "github.com/json-iterator/go",
 			"revision": "f2b4162afba35581b6d4a50d3b8f34e33c144682",
