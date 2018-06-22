@@ -1,0 +1,41 @@
+language: go
+
+sudo: required
+
+services:
+  - mongodb
+  - docker
+
+go:
+  - "1.10.x"
+
+cache:
+  directories:
+  - vendor/github.com
+  - vendor/golang.org
+  - vendor/gopkg.in
+
+before_install:
+  - go get -u github.com/kardianos/govendor
+
+install:
+  - make pre-build
+
+script:
+  - make build
+  - make src.test-coverage
+  - export TAG=$(echo $TRAVIS_BRANCH | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]/-/g' )
+  - docker build --tag linkernetworks/oauth:$TAG .
+
+before_deploy:
+  - echo $DOCKER_HUB_PASSWORD | docker login -u $DOCKER_HUB_USER --password-stdin
+
+deploy:
+  provider: script
+  script: docker push linkernetworks/oauth:$TAG
+  on:
+    branch: develop
+
+after_success:
+  - cp build/src/coverage.txt coverage.txt
+  - bash <(curl -s https://codecov.io/bash)

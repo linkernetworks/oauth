@@ -18,3 +18,4 @@ vendor/*
 !vendor/vendor.json
 
 .vscode
+build/
