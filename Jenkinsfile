@@ -78,6 +78,15 @@ pipeline {
                             reportTitles: "GO cover report",
                             includes: "coverage.html"
                         ])
+
+                        sh "make src.cmd.bats > bats.log"
+                        step([
+                            $class: "TapPublisher",
+                            testResults: "bats.log",
+                            failIfNoResults: true,
+                            failedTestsMarkBuildAsFailure: true,
+                        ])
+                        sh "rm bats.log"
                     }
                 }
             }

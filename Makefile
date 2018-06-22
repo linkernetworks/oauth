@@ -5,6 +5,7 @@ BUILD_FOLDER = ./build
 GO           = go
 GO_VENDOR    = govendor
 MKDIR_P      = mkdir -p
+BATS         = bats
 
 ################################################
 
@@ -22,6 +23,7 @@ build: pre-build
 .PHONY: test
 test: build
 	$(MAKE) src.test
+	$(MAKE) src.cmd.bats
 
 .PHONY: check
 check:
@@ -44,7 +46,7 @@ govendor-sync:
 src.build:
 	$(GO) build -v ./src/...
 	$(MKDIR_P) $(BUILD_FOLDER)/src/cmd/lnk-auth/
-	$(GO) build -v -o $(BUILD_FOLDER)/src/cmd/lnk-auth/lnk-auth ./src/cmd/lnk-auth/...
+	$(GO) build -v -o $(BUILD_FOLDER)/src/cmd/oauth_server/oauth_server ./src/cmd/oauth_server/...
 
 .PHONY: src.test
 src.test:
@@ -60,6 +62,12 @@ src.test-coverage:
 	$(GO) test -v -race -coverprofile=$(BUILD_FOLDER)/src/coverage.txt -covermode=atomic ./src/...
 	$(GO) tool cover -html=$(BUILD_FOLDER)/src/coverage.txt -o $(BUILD_FOLDER)/src/coverage.html
 
+## src/cmd/ ####################################
+
+.PHONY: src.cmd.bats
+src.cmd.bats:
+	@$(BATS) -t $(shell find src/cmd -name "*.bats")
+
 ## check build env #############################
 
 .PHONY: check-govendor
@@ -67,8 +75,13 @@ check-govendor:
 	$(info check govendor)
 	@[ "`which $(GO_VENDOR)`" != "" ] || (echo "$(GO_VENDOR) is missing"; false)
 
-## dockerfiles/ ########################################
+.PHONY: check-bats
+check-bats:
+	$(info check bats)
+	@[ "`which $(BATS)`" != "" ] || (echo "$(BATS) is missing"; false)
+
+## docker #######################################
 
 .PHONY: dockerfiles.build
-dockerfiles.build:
-	docker build --tag linkernetworks/oauth:latest --file ./dockerfiles/Dockerfile .
+docker.build:
+	docker build --tag linkernetworks/oauth:latest .

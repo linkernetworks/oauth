@@ -30,6 +30,15 @@ RUN apt-get update
 RUN apt-get install -y mongodb-org
 
 ##
+## Bats
+##
+RUN git clone https://github.com/bats-core/bats-core.git /bats-core && \
+    cd /bats-core && \
+    ./install.sh /usr/local && \
+    cd / && \
+    rm -r /bats-core
+
+##
 ## Make jenkins can do anything
 ##
 RUN apt-get install -y sudo
