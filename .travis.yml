@@ -24,7 +24,7 @@ install:
 script:
   - make build
   - make src.test-coverage
-  - export TAG=$(echo $TRAVIS_BRANCH | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]/-/g' )
+  - export TAG=latest
   - docker build --tag linkernetworks/oauth:$TAG .
 
 before_deploy:
@@ -34,7 +34,7 @@ deploy:
   provider: script
   script: docker push linkernetworks/oauth:$TAG
   on:
-    branch: develop
+    branch: master
 
 after_success:
   - cp build/src/coverage.txt coverage.txt
