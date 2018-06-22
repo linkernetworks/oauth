@@ -71,4 +71,4 @@ check-govendor:
 
 .PHONY: dockerfiles.build
 dockerfiles.build:
-	docker build --tag linkernetowrks/oauth:latest --file ./dockerfiles/Dockerfile .
+	docker build --tag linkernetworks/oauth:latest --file ./dockerfiles/Dockerfile .
