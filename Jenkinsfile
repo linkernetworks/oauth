@@ -106,7 +106,7 @@ pipeline {
                     ]) {
                         sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
                     }
-                    docker.build("linkernetowrks/oauth:${env.BRANCH_NAME.replaceAll("[^A-Za-z0-9.]", "-").toLowerCase()}").push()
+                    docker.image("linkernetowrks/oauth:${env.BRANCH_NAME.replaceAll("[^A-Za-z0-9.]", "-").toLowerCase()}").push()
                 }
             }
         }
