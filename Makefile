@@ -71,4 +71,4 @@ check-govendor:
 
 .PHONY: dockerfiles.build
 dockerfiles.build:
-	docker build --tag sdnvortex/vortex:latest --file ./dockerfiles/Dockerfile .
+	docker build --tag linkernetowrks/oauth:latest --file ./dockerfiles/Dockerfile .
