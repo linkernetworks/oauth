@@ -86,7 +86,7 @@ pipeline {
             steps {
                 script {
                     dir ("src/github.com/linkernetworks/oauth") {
-                        docker.build("linkernetowrks/oauth:${env.BRANCH_NAME.replaceAll("[^A-Za-z0-9.]", "-").toLowerCase()}")
+                        docker.build("linkernetworks/oauth:${env.BRANCH_NAME.replaceAll("[^A-Za-z0-9.]", "-").toLowerCase()}")
                     }
                 }
             }
@@ -106,7 +106,7 @@ pipeline {
                     ]) {
                         sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
                     }
-                    docker.image("linkernetowrks/oauth:${env.BRANCH_NAME.replaceAll("[^A-Za-z0-9.]", "-").toLowerCase()}").push()
+                    docker.image("linkernetworks/oauth:${env.BRANCH_NAME.replaceAll("[^A-Za-z0-9.]", "-").toLowerCase()}").push()
                 }
             }
         }
