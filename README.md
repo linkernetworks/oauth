@@ -1,4 +1,4 @@
-Linker OAuth Service
+Linker OAuth Service [![Build Status](https://travis-ci.org/linkernetworks/oauth.svg?branch=develop)](https://travis-ci.org/linkernetworks/oauth)
 ===========================
 
 Requirement
