@@ -1,17 +1,13 @@
-FROM ubuntu:16.04
+FROM golang:1.10-alpine3.7
 
-RUN apt-get update && \
-    apt-get install -y curl software-properties-common git
-RUN curl -fsSL get.docker.com | sh
-
-##
-## Go
-##
-RUN add-apt-repository ppa:longsleep/golang-backports
-RUN apt-get update && \
-    apt-get install -y golang-go
-ENV GOPATH=$HOME/go
-ENV PATH=$PATH:$HOME/go/bin
+RUN apk add --no-cache curl
+RUN apk add --no-cache docker
+RUN apk add --no-cache git
+RUN apk add --no-cache sudo
+RUN apk add --no-cache bash
+RUN apk add --no-cache mongodb
+RUN apk add --no-cache make
+RUN apk add --no-cache gcc
 
 ##
 ## Go tools
@@ -21,16 +17,7 @@ RUN go get -u github.com/jstemmer/go-junit-report
 RUN go get -u github.com/t-yuki/gocover-cobertura
 
 ##
-## MongoDB
-##
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
-RUN echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse" | \
-    tee /etc/apt/sources.list.d/mongodb-org-3.6.list
-RUN apt-get update && \
-    apt-get install -y mongodb-org
-
-##
-## Bats
+## bats
 ##
 RUN git clone https://github.com/bats-core/bats-core.git /bats-core && \
     cd /bats-core && \
@@ -41,7 +28,6 @@ RUN git clone https://github.com/bats-core/bats-core.git /bats-core && \
 ##
 ## Make jenkins can do anything
 ##
-RUN apt-get install -y sudo
 RUN echo '%jenkins ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN chmod a+rw /etc/group
 RUN chmod a+rw /etc/passwd
@@ -51,4 +37,5 @@ ENV HOME=/home/jenkins
 COPY entry.sh /entry.sh
 RUN chmod +x /entry.sh
 ENTRYPOINT /entry.sh
+
 
