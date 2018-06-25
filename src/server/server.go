@@ -4,27 +4,25 @@ import (
 	"context"
 	"net/http"
 	"strconv"
+	"sync"
 
-	"github.com/gorilla/mux"
+	"github.com/gin-gonic/gin"
 	"github.com/imdario/mergo"
 	"github.com/linkernetworks/logger"
 	"github.com/linkernetworks/oauth/src/config"
-	"github.com/linkernetworks/oauth/src/endpoint"
 	"github.com/linkernetworks/oauth/src/log"
-	"github.com/linkernetworks/oauth/src/service"
 )
 
 type OAuthServer struct {
-	config config.GlobalConfig
-	ep     *endpoint.Endpoint
+	config     config.GlobalConfig
+	httpServer *http.Server
 }
 
-func New(c ...config.GlobalConfig) service.ServiceI {
+func New(c ...config.GlobalConfig) *OAuthServer {
 
 	s := &OAuthServer{
 		config: config.DefaultConfig,
 	}
-	s.ep = endpoint.New(s)
 
 	if len(c) > 0 {
 		if err := mergo.Merge(&s.config, c[0], mergo.WithOverride); err != nil {
@@ -41,73 +39,82 @@ func New(c ...config.GlobalConfig) service.ServiceI {
 	return s
 }
 
-func (s *OAuthServer) Start() error {
-	s.startHTTP()
-	return nil
-}
-
 func (s *OAuthServer) Shutdown(ctx context.Context) error {
-	return nil
+
+	wg := sync.WaitGroup{}
+
+	wg.Add(1)
+	go func() {
+		err := s.httpServer.Shutdown(ctx)
+		if err != nil {
+			logger.Warnf("Shutdown HTTP server failed. err: [%v]", err)
+		}
+		wg.Done()
+	}()
+
+	wait := make(chan int)
+	go func() {
+		wg.Wait()
+		wait <- 1
+	}()
+
+	select {
+	case <-ctx.Done():
+	case <-wait:
+	}
+
+	return ctx.Err()
 }
 
-func (s *OAuthServer) startHTTP() {
+func (s *OAuthServer) Start() error {
 
-	logger.Infoln("Starting HTTP server")
+	r := gin.Default()
+	r.GET("/", func(c *gin.Context) {
+		c.String(http.StatusOK, "Welcome Gin Server")
+	})
 
-	go func() {
+	https, err := strconv.ParseBool(s.config.UseHTTPS)
+	if err != nil {
+		logger.Fatalf("Parse boll string failed. err: %v", err)
+	}
 
-		enableV1, err := strconv.ParseBool(s.config.EnableV1)
-		if err != nil {
-			logger.Fatalf("Parse boll string failed. err: %v", err)
+	if https {
+		bind := ":" + strconv.Itoa(s.config.HTTPSPort)
+		logger.Infof("Starting HTTPS server on [%v]", bind)
+
+		s.httpServer = &http.Server{
+			Addr:    bind,
+			Handler: r,
 		}
 
-		enableV2, err := strconv.ParseBool(s.config.EnableV2)
-		if err != nil {
-			logger.Fatalf("Parse boll string failed. err: %v", err)
-		}
+		go func() {
+			err := s.httpServer.ListenAndServeTLS(s.config.CertPublicKey, s.config.CertPrivateKey)
 
-		r := mux.NewRouter()
-		s.addCommonRoute(r)
-		if enableV1 {
-			s.addV1Route(r)
-		}
-		if enableV2 {
-			s.addV2Route(r)
-		}
-
-		https, err := strconv.ParseBool(s.config.UseHTTPS)
-		if err != nil {
-			logger.Fatalf("Parse boll string failed. err: %v", err)
-		}
-
-		if https {
-			bind := ":" + strconv.Itoa(s.config.HTTPSPort)
-			logger.Infof("Starting HTTPS server on [%v]", bind)
-			err := http.ListenAndServeTLS(bind, s.config.CertPublicKey, s.config.CertPrivateKey, r)
 			if err != nil {
 				logger.Fatalf("Start HTTPS server failed. err: %v", err)
+			} else {
+				logger.Infof("HTTPS server started on [%v]", bind)
 			}
-			logger.Infof("HTTPS server started on [%v]", bind)
-		} else {
-			bind := ":" + strconv.Itoa(s.config.HTTPPort)
-			logger.Infof("Starting HTTP server on [%v]", bind)
-			err := http.ListenAndServe(bind, r)
+		}()
+
+	} else {
+		bind := ":" + strconv.Itoa(s.config.HTTPPort)
+		logger.Infof("Starting HTTP server on [%v]", bind)
+
+		s.httpServer = &http.Server{
+			Addr:    bind,
+			Handler: r,
+		}
+
+		go func() {
+			err := s.httpServer.ListenAndServe()
 			if err != nil {
 				logger.Fatalf("Start HTTP server failed. err: %v", err)
+			} else {
+				logger.Infof("HTTP server started on [%v]", bind)
 			}
-			logger.Infof("HTTP server started on [%v]", bind)
-		}
-	}()
-}
+		}()
+	}
 
-func (s *OAuthServer) addCommonRoute(r *mux.Router) {
-	r.HandleFunc("/ping", s.ep.Ping)
-}
-
-func (s *OAuthServer) addV1Route(r *mux.Router) {
-
-}
-
-func (s *OAuthServer) addV2Route(r *mux.Router) {
-
+	return nil
 }
