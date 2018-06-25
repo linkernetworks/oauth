@@ -6,6 +6,7 @@ GO           = go
 GO_VENDOR    = govendor
 MKDIR_P      = mkdir -p
 BATS         = bats
+DOCKER       = docker
 
 ################################################
 
@@ -13,25 +14,21 @@ BATS         = bats
 all: build test
 
 .PHONY: pre-build
-pre-build:
-	$(MAKE) govendor-sync
+pre-build: govendor-sync
 
 .PHONY: build
-build: pre-build
-	$(MAKE) src.build
+build: pre-build src.build
 
 .PHONY: test
-test: build
-	$(MAKE) src.test
-	$(MAKE) src.cmd.bats
+test: build src.test src.cmd.bats
 
 .PHONY: check
-check:
-	$(MAKE) check-govendor
+check: check-govendor check-bats check-docker
 
 .PHONY: clean
 clean:
 	$(RM) -rf $(BUILD_FOLDER)
+	$(GO) clean -i -r -x -cache -testcache
 
 ## vendor/ #####################################
 
@@ -73,15 +70,20 @@ src.cmd.bats:
 .PHONY: check-govendor
 check-govendor:
 	$(info check govendor)
-	@[ "`which $(GO_VENDOR)`" != "" ] || (echo "$(GO_VENDOR) is missing"; false)
+	@[ "`which $(GO_VENDOR)`" != "" ] || (echo "$(GO_VENDOR) is missing"; false) && (echo ".. OK")
 
 .PHONY: check-bats
 check-bats:
 	$(info check bats)
-	@[ "`which $(BATS)`" != "" ] || (echo "$(BATS) is missing"; false)
+	@[ "`which $(BATS)`" != "" ] || (echo "$(BATS) is missing"; false) && (echo ".. OK")
+
+.PHONY: check-docker
+check-docker:
+	$(info check docker)
+	@[ "`which $(DOCKER)`" != "" ] || (echo "$(DOCKER) is missing"; false) && (echo ".. OK")
 
 ## docker #######################################
 
 .PHONY: dockerfiles.build
 docker.build:
-	docker build --tag linkernetworks/oauth:latest .
+	$(DOCKER) build --tag linkernetworks/oauth:latest .
