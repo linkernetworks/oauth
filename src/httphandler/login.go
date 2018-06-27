@@ -12,7 +12,7 @@ import (
 
 func Login(c *gin.Context) {
 
-	email := c.Query("email")
+	email := c.PostForm("email")
 	if email == "" {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"success": false,
@@ -21,7 +21,7 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	password := c.Query("password")
+	password := c.PostForm("password")
 	if password == "" {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"success": false,

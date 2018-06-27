@@ -109,9 +109,11 @@ func (s *OAuthServer) startHTTP() error {
 		c.String(http.StatusOK, "Welcome Gin Server")
 	})
 
+	s.router.GET("/login", httphandler.LoginPage)
+
 	api := s.router.Group("/api")
 	{
-		api.GET("/login", httphandler.Login)
+		api.POST("/login", httphandler.Login)
 
 		oauthv2 := api.Group("/oauth2")
 		{
