@@ -1,6 +1,9 @@
 package config
 
-import "github.com/linkernetworks/logger"
+import (
+	"github.com/RangelReale/osin"
+	"github.com/linkernetworks/logger"
+)
 
 type GlobalConfig struct {
 	EnableV1       string
@@ -11,6 +14,7 @@ type GlobalConfig struct {
 	CertPublicKey  string
 	CertPrivateKey string
 	LoggerConfig   logger.LoggerConfig
+	OsinConfig     osin.ServerConfig
 }
 
 var DefaultConfig GlobalConfig = GlobalConfig{
@@ -27,6 +31,23 @@ var DefaultConfig GlobalConfig = GlobalConfig{
 		MaxAge:        "720h",
 		SuffixPattern: ".%Y%m%d",
 		LinkName:      "oauth_log",
+	},
+	OsinConfig: osin.ServerConfig{
+		AuthorizationExpiration: 250,
+		AccessExpiration:        3600,
+		TokenType:               "Bearer",
+		AllowedAuthorizeTypes: []osin.AuthorizeRequestType{
+			"code",
+		},
+		AllowedAccessTypes: []osin.AccessRequestType{
+			"authorization_code",
+		},
+		ErrorStatusCode:             400,
+		AllowClientSecretInParams:   false,
+		AllowGetAccessRequest:       false,
+		RequirePKCEForPublicClients: false,
+		RedirectUriSeparator:        "",
+		RetainTokenAfterRefresh:     false,
 	},
 }
 
