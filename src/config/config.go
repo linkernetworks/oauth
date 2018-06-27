@@ -43,7 +43,7 @@ var DefaultConfig GlobalConfig = GlobalConfig{
 			"authorization_code",
 		},
 		ErrorStatusCode:             400,
-		AllowClientSecretInParams:   false,
+		AllowClientSecretInParams:   true,
 		AllowGetAccessRequest:       false,
 		RequirePKCEForPublicClients: false,
 		RedirectUriSeparator:        "",

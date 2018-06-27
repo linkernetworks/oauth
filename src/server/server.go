@@ -102,8 +102,14 @@ func (s *OAuthServer) startHTTP() error {
 		c.String(http.StatusOK, "Welcome Gin Server")
 	})
 
-	oauthv2 := s.router.Group("/oauth2")
-	oauthv2.GET("/authorize", httphandler.Authorize)
+	api := s.router.Group("/api")
+	{
+		oauthv2 := api.Group("/oauth2")
+		{
+			oauthv2.GET("/authorize", httphandler.Authorize)
+			oauthv2.POST("/token", httphandler.Token)
+		}
+	}
 
 	https, err := strconv.ParseBool(s.config.UseHTTPS)
 	if err != nil {

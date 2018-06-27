@@ -33,10 +33,10 @@
 			"revisionTime": "2017-01-09T09:34:21Z"
 		},
 		{
-			"checksumSHA1": "E9gvfQCApKdYhOQLEkfAx60MkI4=",
+			"checksumSHA1": "GeDZMNp/r9c9Ld/NaK9PQuMN5YU=",
 			"path": "github.com/gin-gonic/gin",
-			"revision": "bf85b32c1d11dcfa2202daa6d1ad2addae2d1619",
-			"revisionTime": "2018-06-21T01:53:52Z"
+			"revision": "c00f21ff239822d013b80e54bd403fbc08a0b5ff",
+			"revisionTime": "2018-06-26T10:56:43Z"
 		},
 		{
 			"checksumSHA1": "O2rrqYI7QQjJYVx8+E8DC8rlIh0=",
@@ -243,8 +243,20 @@
 			"revisionTime": "2018-06-18T11:14:19Z"
 		},
 		{
+			"checksumSHA1": "v3LJdECGwUcLb9+Nk/Bu+xw6Ly8=",
+			"path": "github.com/stretchr/objx",
+			"revision": "9e1dfc121bca96d392da5d00591953bdb54ab306",
+			"revisionTime": "2018-06-26T19:55:58Z"
+		},
+		{
 			"checksumSHA1": "c6pbpF7eowwO59phRTpF8cQ80Z0=",
 			"path": "github.com/stretchr/testify/assert",
+			"revision": "f35b8ab0b5a2cef36673838d662e249dd9c94686",
+			"revisionTime": "2018-05-06T18:05:49Z"
+		},
+		{
+			"checksumSHA1": "WmBSFdqpdYRIkp0I408JIZ3LDMY=",
+			"path": "github.com/stretchr/testify/mock",
 			"revision": "f35b8ab0b5a2cef36673838d662e249dd9c94686",
 			"revisionTime": "2018-05-06T18:05:49Z"
 		},
