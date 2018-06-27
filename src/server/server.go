@@ -6,16 +6,22 @@ import (
 	"strconv"
 	"sync"
 
+	"github.com/RangelReale/osin"
 	"github.com/gin-gonic/gin"
 	"github.com/imdario/mergo"
 	"github.com/linkernetworks/logger"
 	"github.com/linkernetworks/oauth/src/config"
+	"github.com/linkernetworks/oauth/src/httphandler"
 	"github.com/linkernetworks/oauth/src/log"
+	"github.com/linkernetworks/oauth/src/osinstorage"
 )
 
 type OAuthServer struct {
-	config     config.GlobalConfig
-	httpServer *http.Server
+	config      config.GlobalConfig
+	router      *gin.Engine
+	httpServer  *http.Server
+	osinStorage *osinstorage.MemoryStorage
+	osinServer  *osin.Server
 }
 
 func New(c ...config.GlobalConfig) *OAuthServer {
@@ -37,6 +43,30 @@ func New(c ...config.GlobalConfig) *OAuthServer {
 	logger.Debugf("config: %#v", s.config)
 
 	return s
+}
+
+func (s *OAuthServer) Start() error {
+
+	s.router = gin.Default()
+
+	s.osinStorage = osinstorage.NewMemoryStorage(
+		// TODO: input client data from outside
+		osin.DefaultClient{
+			Id:          "1234",
+			Secret:      "aabbccdd",
+			RedirectUri: "http://localhost",
+		},
+	)
+
+	s.osinServer = osin.NewServer(&s.config.OsinConfig, s.osinStorage)
+	s.router.Use(func(c *gin.Context) {
+		c.Set("osinServer", s.osinServer)
+		c.Next()
+	})
+
+	s.startHTTP()
+
+	return nil
 }
 
 func (s *OAuthServer) Shutdown(ctx context.Context) error {
@@ -66,12 +96,14 @@ func (s *OAuthServer) Shutdown(ctx context.Context) error {
 	return ctx.Err()
 }
 
-func (s *OAuthServer) Start() error {
+func (s *OAuthServer) startHTTP() error {
 
-	r := gin.Default()
-	r.GET("/", func(c *gin.Context) {
+	s.router.GET("/", func(c *gin.Context) {
 		c.String(http.StatusOK, "Welcome Gin Server")
 	})
+
+	oauthv2 := s.router.Group("/oauth2")
+	oauthv2.GET("/authorize", httphandler.Authorize)
 
 	https, err := strconv.ParseBool(s.config.UseHTTPS)
 	if err != nil {
@@ -84,7 +116,7 @@ func (s *OAuthServer) Start() error {
 
 		s.httpServer = &http.Server{
 			Addr:    bind,
-			Handler: r,
+			Handler: s.router,
 		}
 
 		go func() {
@@ -103,7 +135,7 @@ func (s *OAuthServer) Start() error {
 
 		s.httpServer = &http.Server{
 			Addr:    bind,
-			Handler: r,
+			Handler: s.router,
 		}
 
 		go func() {
