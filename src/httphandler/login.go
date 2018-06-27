@@ -12,7 +12,7 @@ import (
 
 func Login(c *gin.Context) {
 
-	email := c.Query("email")
+	email := c.PostForm("email")
 	if email == "" {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"success": false,
@@ -21,7 +21,7 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	password := c.Query("password")
+	password := c.PostForm("password")
 	if password == "" {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"success": false,
@@ -31,11 +31,10 @@ func Login(c *gin.Context) {
 	}
 
 	// TODO: verify email/password
-	user_id := email
-	logger.Debugf("user [%v] login", user_id)
+	logger.Debugf("user [%v] login", email)
 
 	session := sessions.Default(c)
-	session.Set("user_id", user_id)
+	session.Set("email", email)
 	session.Save()
 
 	c.JSON(http.StatusOK, gin.H{
