@@ -127,11 +127,10 @@ func (s *OAuthServer) startHTTP() error {
 
 		go func() {
 			err := s.httpServer.ListenAndServeTLS(s.config.CertPublicKey, s.config.CertPrivateKey)
-
-			if err != nil {
+			if err != nil && err != http.ErrServerClosed {
 				logger.Fatalf("Start HTTPS server failed. err: %v", err)
 			} else {
-				logger.Infof("HTTPS server started on [%v]", bind)
+				logger.Infof("HTTPS server closed.")
 			}
 		}()
 
@@ -146,10 +145,10 @@ func (s *OAuthServer) startHTTP() error {
 
 		go func() {
 			err := s.httpServer.ListenAndServe()
-			if err != nil {
+			if err != nil && err != http.ErrServerClosed {
 				logger.Fatalf("Start HTTP server failed. err: %v", err)
 			} else {
-				logger.Infof("HTTP server started on [%v]", bind)
+				logger.Infof("HTTP server closed.")
 			}
 		}()
 	}
