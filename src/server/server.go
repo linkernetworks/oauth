@@ -124,6 +124,11 @@ func (s *OAuthServer) startHTTP() error {
 			oauthv2.Use(httphandler.AuthorizedUserOrRedirect).GET("/authorize", httphandler.Authorize)
 			oauthv2.POST("/token", httphandler.Token)
 		}
+
+		authorizedUser := api.Use(httphandler.AuthorizedUser)
+		{
+			authorizedUser.GET("/user", httphandler.UserGet)
+		}
 	}
 
 	https, err := strconv.ParseBool(s.config.UseHTTPS)

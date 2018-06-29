@@ -3,11 +3,10 @@ package httphandler
 import (
 	"net/http"
 
-	"bitbucket.org/linkernetworks/aurora-debug/github.com/linkernetworks/logger"
-
 	"github.com/RangelReale/osin"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
+	"github.com/linkernetworks/logger"
 )
 
 func AuthorizedUserOrRedirect(c *gin.Context) {
@@ -32,6 +31,7 @@ func AuthorizedUser(c *gin.Context) {
 			"success": false,
 			"error":   "Not authorized",
 		})
+		c.Abort()
 	}
 }
 
