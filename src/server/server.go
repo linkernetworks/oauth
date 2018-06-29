@@ -117,7 +117,7 @@ func (s *OAuthServer) startHTTP() error {
 
 		oauthv2 := api.Group("/oauth2")
 		{
-			oauthv2.Use(httphandler.CheckAuthorizedUser).GET("/authorize", httphandler.Authorize)
+			oauthv2.Use(httphandler.AuthorizedUserOrRedirect).GET("/authorize", httphandler.Authorize)
 			oauthv2.POST("/token", httphandler.Token)
 		}
 	}

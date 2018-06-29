@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func CheckAuthorizedUser(c *gin.Context) {
+func AuthorizedUserOrRedirect(c *gin.Context) {
 
 	session := sessions.Default(c)
 	if session.Get("user_id") != nil {
