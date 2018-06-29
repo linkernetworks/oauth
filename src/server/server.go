@@ -60,6 +60,10 @@ func (s *OAuthServer) Start() error {
 			RedirectUri: "http://localhost",
 		},
 	)
+	s.router.Use(func(c *gin.Context) {
+		c.Set("osinStorage", s.osinStorage)
+		c.Next()
+	})
 
 	s.osinServer = osin.NewServer(&s.config.OsinConfig, s.osinStorage)
 	s.router.Use(func(c *gin.Context) {

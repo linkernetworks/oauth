@@ -3,6 +3,9 @@ package httphandler
 import (
 	"net/http"
 
+	"bitbucket.org/linkernetworks/aurora-debug/github.com/linkernetworks/logger"
+
+	"github.com/RangelReale/osin"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
@@ -21,7 +24,7 @@ func AuthorizedUserOrRedirect(c *gin.Context) {
 
 func AuthorizedUser(c *gin.Context) {
 
-	if checkSession(c) {
+	if checkSession(c) || checkOAuthToken(c) {
 		c.Next()
 		return
 	} else {
@@ -38,4 +41,28 @@ func checkSession(c *gin.Context) bool {
 		return true
 	}
 	return false
+}
+
+func checkOAuthToken(c *gin.Context) bool {
+	storage := c.MustGet("osinStorage").(osin.Storage)
+
+	token := c.PostForm("token")
+	if token == "" {
+		token = c.Query("token")
+	}
+	if token == "" {
+		return false
+	}
+
+	data, err := storage.LoadAccess(token)
+	switch err {
+	case nil:
+	default:
+		logger.Warnf("Get OAuth access data failed. err: [%v]", err)
+		fallthrough
+	case osin.ErrNotFound:
+		return false
+	}
+
+	return !data.IsExpired()
 }
