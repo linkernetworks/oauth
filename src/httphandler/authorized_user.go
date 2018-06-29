@@ -9,15 +9,33 @@ import (
 
 func AuthorizedUserOrRedirect(c *gin.Context) {
 
-	session := sessions.Default(c)
-	if session.Get("user_id") != nil {
+	if checkSession(c) {
 		c.Next()
 		return
-
+	} else {
+		// TODO: append request URL to login page
+		c.Redirect(http.StatusTemporaryRedirect, "/login?redirect_uri="+c.Request.RequestURI)
+		c.Status(http.StatusTemporaryRedirect)
 	}
+}
 
-	// TODO: append request URL to login page
+func AuthorizedUser(c *gin.Context) {
 
-	c.Redirect(http.StatusTemporaryRedirect, "/login?redirect_uri="+c.Request.RequestURI)
-	return
+	if checkSession(c) {
+		c.Next()
+		return
+	} else {
+		c.JSON(http.StatusUnauthorized, gin.H{
+			"success": false,
+			"error":   "Not authorized",
+		})
+	}
+}
+
+func checkSession(c *gin.Context) bool {
+	session := sessions.Default(c)
+	if session.Get("user_id") != nil {
+		return true
+	}
+	return false
 }
