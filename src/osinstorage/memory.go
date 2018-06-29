@@ -111,7 +111,7 @@ func (s *MemoryStorage) SaveAccess(data *osin.AccessData) error {
 	s.accessMutex.Lock()
 	defer s.accessMutex.Unlock()
 
-	s.access[data.AccessToken] = *data
+	s.access[data.AuthorizeData.Code] = *data
 	if data.RefreshToken != "" {
 		s.refreshMutex.Lock()
 		defer s.refreshMutex.Unlock()

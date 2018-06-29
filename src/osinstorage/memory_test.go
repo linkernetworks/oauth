@@ -37,3 +37,22 @@ func TestClone(t *testing.T) {
 	// assert
 	assert.Equal(t, expected, actual)
 }
+
+func TestGetAndSaveAccess(t *testing.T) {
+	// arrange
+	storage := NewMemoryStorage()
+	expectedAccess := &osin.AccessData{
+		AuthorizeData: &osin.AuthorizeData{
+			Code: "codeeeee",
+		},
+		AccessToken: "toeknnnnn",
+	}
+
+	// action
+	storage.SaveAccess(expectedAccess)
+	actualAccess, err := storage.LoadAccess("codeeeee")
+
+	// assert
+	assert.NoError(t, err)
+	assert.Equal(t, expectedAccess, actualAccess)
+}
