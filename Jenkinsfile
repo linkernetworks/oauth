@@ -119,5 +119,13 @@ pipeline {
                 }
             }
         }
+        stage("Deploy"){
+            when {
+                branch 'develop'
+            }
+            steps {
+                build job: "oauth/bitbucket-oauth/${env.BRANCH_NAME}", wait: false
+            }
+        }
     }
 }
