@@ -21,6 +21,18 @@
 			"revisionTime": "2018-03-08T23:13:08Z"
 		},
 		{
+			"checksumSHA1": "QnuAzRx3UVd1VEpVmUKqrdg7ZzU=",
+			"path": "github.com/emicklei/go-restful",
+			"revision": "3eb9738c1697594ea6e71a7156a9bb32ed216cf0",
+			"revisionTime": "2018-07-01T19:57:19Z"
+		},
+		{
+			"checksumSHA1": "rmsBHtFpV3osid71XnTZBo/b3bU=",
+			"path": "github.com/emicklei/go-restful/log",
+			"revision": "3eb9738c1697594ea6e71a7156a9bb32ed216cf0",
+			"revisionTime": "2018-07-01T19:57:19Z"
+		},
+		{
 			"checksumSHA1": "V6gJx3kala+tjfo/ynTjg1u5OxI=",
 			"path": "github.com/gin-contrib/cors",
 			"revision": "6f0a820f94bea07359ec77c26855ca8cf6762739",
@@ -153,6 +165,12 @@
 			"revisionTime": "2018-07-12T00:54:02Z"
 		},
 		{
+			"checksumSHA1": "Ywtth3s9PIYxkXxuojeo76lGO14=",
+			"path": "github.com/linkernetworks/logger",
+			"revision": "a4819848487c62c354fa572270d013dca4882cdd",
+			"revisionTime": "2018-05-31T08:31:55Z"
+		},
+		{
 			"checksumSHA1": "SEnjvwVyfuU2xBaOfXfwPD5MZqk=",
 			"path": "github.com/mattn/go-colorable",
 			"revision": "efa589957cd060542a26d2dd7832fd6a6c6c3ade",
@@ -259,6 +277,30 @@
 			"path": "github.com/stretchr/testify/assert",
 			"revision": "f35b8ab0b5a2cef36673838d662e249dd9c94686",
 			"revisionTime": "2018-05-06T18:05:49Z"
+		},
+		{
+			"checksumSHA1": "wnEANt4k5X/KGwoFyfSSnpxULm4=",
+			"path": "github.com/stretchr/testify/require",
+			"revision": "f35b8ab0b5a2cef36673838d662e249dd9c94686",
+			"revisionTime": "2018-05-06T18:05:49Z"
+		},
+		{
+			"checksumSHA1": "uefllr2OtKBGo/kQSAPbW3w6p0A=",
+			"path": "github.com/stretchr/testify/suite",
+			"revision": "f35b8ab0b5a2cef36673838d662e249dd9c94686",
+			"revisionTime": "2018-05-06T18:05:49Z"
+		},
+		{
+			"checksumSHA1": "ETsGmrj/lDYYdQ1l18q2vrCm8C8=",
+			"path": "github.com/tidwall/gjson",
+			"revision": "ba784d767ac7d937cf2439f237e50ec04a381c8b",
+			"revisionTime": "2018-07-11T01:10:33Z"
+		},
+		{
+			"checksumSHA1": "Tk+aXpWRuTQhURlO79bd7YogcU0=",
+			"path": "github.com/tidwall/match",
+			"revision": "1731857f09b1f38450e2c12409748407822dc6be",
+			"revisionTime": "2017-10-02T07:59:45Z"
 		},
 		{
 			"checksumSHA1": "kdas0zQNtQqfUMEMFGkUF1OcgPc=",
