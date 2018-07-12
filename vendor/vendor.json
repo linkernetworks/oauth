@@ -9,12 +9,6 @@
 			"revisionTime": "2018-05-21T16:14:19Z"
 		},
 		{
-			"checksumSHA1": "/hUJbUKsClUI3aE/RXim2m/uDBI=",
-			"path": "github.com/boj/redistore",
-			"revision": "82b86d293eb292dd6949fadc09388c47f095dc54",
-			"revisionTime": "2018-07-06T18:38:28Z"
-		},
-		{
 			"checksumSHA1": "CSPbwbyzqA6sfORicn4HFtIhF/c=",
 			"path": "github.com/davecgh/go-spew/spew",
 			"revision": "8991bc29aa16c548c550c7ff78260e27b9ab7c73",
@@ -117,30 +111,6 @@
 			"revisionTime": "2018-06-12T20:28:35Z"
 		},
 		{
-			"checksumSHA1": "+Z0u95dIjPpQLz2ZAL3TJGJ5jps=",
-			"path": "github.com/linkernetworks/foundation/net/http/session",
-			"revision": "78a14bc02317cec35f4d584150620dd2b03e5c19",
-			"revisionTime": "2018-07-12T00:54:02Z"
-		},
-		{
-			"checksumSHA1": "Bs8LQ3PmsIaebBS3I6ZXN7hcq0Q=",
-			"path": "github.com/linkernetworks/foundation/service/gearman",
-			"revision": "78a14bc02317cec35f4d584150620dd2b03e5c19",
-			"revisionTime": "2018-07-12T00:54:02Z"
-		},
-		{
-			"checksumSHA1": "CjggOmJlIAEwDrAoOkV3fUH026M=",
-			"path": "github.com/linkernetworks/foundation/service/influxdb",
-			"revision": "78a14bc02317cec35f4d584150620dd2b03e5c19",
-			"revisionTime": "2018-07-12T00:54:02Z"
-		},
-		{
-			"checksumSHA1": "bBKttDjHaaiu9XdHE9N2gdFA+0M=",
-			"path": "github.com/linkernetworks/foundation/service/mongo",
-			"revision": "78a14bc02317cec35f4d584150620dd2b03e5c19",
-			"revisionTime": "2018-07-12T00:54:02Z"
-		},
-		{
 			"checksumSHA1": "+sOInc9HoiKzodJcKpvefbOlRY8=",
 			"path": "github.com/linkernetworks/foundation/service/redis",
 			"revision": "78a14bc02317cec35f4d584150620dd2b03e5c19",
@@ -149,18 +119,6 @@
 		{
 			"checksumSHA1": "Q+3NXd077zUiA9QQppCzJuWjwY0=",
 			"path": "github.com/linkernetworks/foundation/service/serviceconfig",
-			"revision": "78a14bc02317cec35f4d584150620dd2b03e5c19",
-			"revisionTime": "2018-07-12T00:54:02Z"
-		},
-		{
-			"checksumSHA1": "mF//DdvPxejzCXHLWynuBp20HTo=",
-			"path": "github.com/linkernetworks/foundation/service/socketio",
-			"revision": "78a14bc02317cec35f4d584150620dd2b03e5c19",
-			"revisionTime": "2018-07-12T00:54:02Z"
-		},
-		{
-			"checksumSHA1": "f8vJkf0UT+f6KOMSyUVKiP8zmhg=",
-			"path": "github.com/linkernetworks/foundation/service/websocket",
 			"revision": "78a14bc02317cec35f4d584150620dd2b03e5c19",
 			"revisionTime": "2018-07-12T00:54:02Z"
 		},
