@@ -7,7 +7,7 @@ import (
 	"github.com/linkernetworks/oauth/src/app/storage"
 	"github.com/linkernetworks/oauth/src/mongo"
 	"github.com/linkernetworks/oauth/src/sms"
-	"github.com/linkernetworks/redis"
+	"github.com/linkernetworks/foundation/service/redis"
 )
 
 // ServiceProvider wrape dependencies of oauth api
