@@ -38,7 +38,7 @@ deploy:
   provider: script
   script: docker push linkernetworks/oauth:$TAG
   on:
-    branch: develop
+    branch: master
 
 after_success:
   - cp build/src/coverage.txt coverage.txt

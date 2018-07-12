@@ -129,22 +129,16 @@
 			"revisionTime": "2018-02-20T04:22:22Z"
 		},
 		{
-			"checksumSHA1": "Ywtth3s9PIYxkXxuojeo76lGO14=",
-			"path": "github.com/linkernetworks/logger",
-			"revision": "a4819848487c62c354fa572270d013dca4882cdd",
-			"revisionTime": "2018-05-31T08:31:55Z"
+			"checksumSHA1": "+sOInc9HoiKzodJcKpvefbOlRY8=",
+			"path": "github.com/linkernetworks/foundation/service/redis",
+			"revision": "78a14bc02317cec35f4d584150620dd2b03e5c19",
+			"revisionTime": "2018-07-12T00:54:02Z"
 		},
 		{
-			"checksumSHA1": "gPGlywe21cA6SuD6R1xbTntW1fc=",
-			"path": "github.com/linkernetworks/redis",
-			"revision": "5d54c7e9d23f75032121cf5aaa8b27e8914a5c10",
-			"revisionTime": "2018-06-04T18:46:57Z"
-		},
-		{
-			"checksumSHA1": "8ejg/kxhpSBDPHteEQwFgLqbank=",
-			"path": "github.com/linkernetworks/serviceconfig",
-			"revision": "1a3a6c6228e3e958b2e42535ef173804470f0884",
-			"revisionTime": "2018-05-18T07:18:51Z"
+			"checksumSHA1": "Q+3NXd077zUiA9QQppCzJuWjwY0=",
+			"path": "github.com/linkernetworks/foundation/service/serviceconfig",
+			"revision": "78a14bc02317cec35f4d584150620dd2b03e5c19",
+			"revisionTime": "2018-07-12T00:54:02Z"
 		},
 		{
 			"checksumSHA1": "SEnjvwVyfuU2xBaOfXfwPD5MZqk=",

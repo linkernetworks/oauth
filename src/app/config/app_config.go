@@ -3,7 +3,7 @@ package config
 import (
 	"github.com/linkernetworks/oauth/src/mongo"
 	"github.com/linkernetworks/oauth/src/sms"
-	"github.com/linkernetworks/redis"
+	"github.com/linkernetworks/foundation/service/redis"
 )
 
 // AppConfig
