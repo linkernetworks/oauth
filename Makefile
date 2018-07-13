@@ -84,6 +84,6 @@ check-docker:
 
 ## docker #######################################
 
-.PHONY: dockerfiles.build
+.PHONY: docker.build
 docker.build:
 	$(DOCKER) build --tag linkernetworks/oauth:latest .

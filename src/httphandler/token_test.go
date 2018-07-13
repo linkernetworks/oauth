@@ -17,6 +17,8 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+// As an OAuth2 client with valid authorized code,
+// 'access_token' & 'refresh_token' tokens should return from the endpoint /token.
 func TestToken(t *testing.T) {
 	// arrange: prepare static data
 	clientID := "client_id"

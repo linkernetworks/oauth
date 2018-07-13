@@ -7,7 +7,10 @@ import (
 	"sync"
 
 	"github.com/RangelReale/osin"
+	"github.com/gin-contrib/sessions"
+	"github.com/gin-contrib/sessions/memstore"
 	"github.com/gin-gonic/gin"
+	"github.com/gorilla/securecookie"
 	"github.com/imdario/mergo"
 	"github.com/linkernetworks/logger"
 	"github.com/linkernetworks/oauth/src/config"
@@ -64,6 +67,10 @@ func (s *OAuthServer) Start() error {
 		c.Next()
 	})
 
+	secret := securecookie.GenerateRandomKey(64)
+	store := memstore.NewStore(secret)
+	s.router.Use(sessions.Sessions("session", store))
+
 	s.startHTTP()
 
 	return nil
@@ -102,11 +109,15 @@ func (s *OAuthServer) startHTTP() error {
 		c.String(http.StatusOK, "Welcome Gin Server")
 	})
 
+	s.router.GET("/login", httphandler.LoginPage)
+
 	api := s.router.Group("/api")
 	{
+		api.POST("/login", httphandler.Login)
+
 		oauthv2 := api.Group("/oauth2")
 		{
-			oauthv2.GET("/authorize", httphandler.Authorize)
+			oauthv2.Use(httphandler.CheckAuthorizedUser).GET("/authorize", httphandler.Authorize)
 			oauthv2.POST("/token", httphandler.Token)
 		}
 	}
