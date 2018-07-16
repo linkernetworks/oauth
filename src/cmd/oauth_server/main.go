@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
@@ -15,7 +16,16 @@ import (
 func main() {
 
 	server := server.New(config.DevelopConfig)
-	server.Start()
+	server.Addr = ":8080"
+
+	go func() {
+		err := server.ListenAndServe()
+		if err != nil && err != http.ErrServerClosed {
+			logger.Fatalf("Start HTTP server failed. err: %v", err)
+		} else {
+			logger.Infof("HTTP server closed.")
+		}
+	}()
 
 	stopSignal := make(chan os.Signal, 1)
 	signal.Notify(stopSignal, syscall.SIGINT, syscall.SIGTERM)
