@@ -61,7 +61,7 @@ func (s *TokenTestSuit) TestSignInWithValidUser() {
 	// arrange: URL to send request
 	u := url.URL{
 		Scheme: "http",
-		Path:   "/oauth2/token",
+		Path:   "/token",
 	}
 
 	// arrange: from data for POST

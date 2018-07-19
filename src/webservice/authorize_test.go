@@ -49,7 +49,7 @@ func (s *AuthorizeTestSuit) TestSignInWithValidUser() {
 	// arrange
 	u := url.URL{
 		Scheme:   "http",
-		Path:     "/oauth2/authorize",
+		Path:     "/authorize",
 		RawQuery: "client_id=1234&response_type=code",
 	}
 	req, err := http.NewRequest("GET", u.String(), nil)

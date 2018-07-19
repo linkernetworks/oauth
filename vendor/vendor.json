@@ -9,6 +9,12 @@
 			"revisionTime": "2018-05-21T16:14:19Z"
 		},
 		{
+			"checksumSHA1": "/hUJbUKsClUI3aE/RXim2m/uDBI=",
+			"path": "github.com/boj/redistore",
+			"revision": "82b86d293eb292dd6949fadc09388c47f095dc54",
+			"revisionTime": "2018-07-06T18:38:28Z"
+		},
+		{
 			"checksumSHA1": "CSPbwbyzqA6sfORicn4HFtIhF/c=",
 			"path": "github.com/davecgh/go-spew/spew",
 			"revision": "8991bc29aa16c548c550c7ff78260e27b9ab7c73",
@@ -171,6 +177,78 @@
 			"revisionTime": "2018-05-31T08:31:55Z"
 		},
 		{
+			"checksumSHA1": "d+/a/7GAX6PtYQbbFUY1R/TPfn0=",
+			"path": "github.com/linkernetworks/mongo",
+			"revision": "759fb038e917fa2c92cf1c541cd6b0063394cf75",
+			"revisionTime": "2018-05-24T10:14:37Z"
+		},
+		{
+			"checksumSHA1": "SpB9VyH0SsaCgkpd7bxTVYU/P6E=",
+			"path": "github.com/linkernetworks/net/http",
+			"revision": "946701828d6c210239143ab54cb1506fc6131d5e",
+			"revisionTime": "2018-06-19T03:23:25Z"
+		},
+		{
+			"checksumSHA1": "iBGEr+J1x9JSl/ppe3y8j94GSXo=",
+			"path": "github.com/linkernetworks/session",
+			"revision": "fc3c699a49044b78d4aec1978bba58b70fa91d02",
+			"revisionTime": "2018-06-27T21:33:43Z"
+		},
+		{
+			"checksumSHA1": "GQDsAve6AvCFCtnO7vem8sMbDsI=",
+			"path": "github.com/linkernetworks/validator",
+			"revision": "f84ba508160cb927b6e28069d8915cb7b333baa1",
+			"revisionTime": "2018-02-24T08:33:38Z"
+		},
+		{
+			"checksumSHA1": "zNdLHxfvx3rhwLNJRofMN5jEaIw=",
+			"path": "github.com/linkernetworks/webservice/login",
+			"revision": "5c101011ddf0501919199ad1c2dcbd59f573a1d8",
+			"revisionTime": "2018-07-25T03:16:40Z",
+			"version": "develop",
+			"versionExact": "develop"
+		},
+		{
+			"checksumSHA1": "ypxN/QzhjU5Dnntw9psDZnwVQlM=",
+			"path": "github.com/linkernetworks/webservice/login/config",
+			"revision": "5c101011ddf0501919199ad1c2dcbd59f573a1d8",
+			"revisionTime": "2018-07-25T03:16:40Z",
+			"version": "develop",
+			"versionExact": "develop"
+		},
+		{
+			"checksumSHA1": "b0GoQzmULh5IdTdPPN3FC1PdFT8=",
+			"path": "github.com/linkernetworks/webservice/login/entity",
+			"revision": "5c101011ddf0501919199ad1c2dcbd59f573a1d8",
+			"revisionTime": "2018-07-25T03:16:40Z",
+			"version": "develop",
+			"versionExact": "develop"
+		},
+		{
+			"checksumSHA1": "H2pu9zOYAnih7pAmbrJQQp7jkv8=",
+			"path": "github.com/linkernetworks/webservice/pwdutil",
+			"revision": "5c101011ddf0501919199ad1c2dcbd59f573a1d8",
+			"revisionTime": "2018-07-25T03:16:40Z",
+			"version": "develop",
+			"versionExact": "develop"
+		},
+		{
+			"checksumSHA1": "ac5P9x/nWHw+gMvJ1Qj7kshfDPs=",
+			"path": "github.com/linkernetworks/webservice/userstorage",
+			"revision": "5c101011ddf0501919199ad1c2dcbd59f573a1d8",
+			"revisionTime": "2018-07-25T03:16:40Z",
+			"version": "develop",
+			"versionExact": "develop"
+		},
+		{
+			"checksumSHA1": "c7sBEjYMXl28IMX7Q7w3+TwhWYI=",
+			"path": "github.com/linkernetworks/webservice/util",
+			"revision": "5c101011ddf0501919199ad1c2dcbd59f573a1d8",
+			"revisionTime": "2018-07-25T03:16:40Z",
+			"version": "develop",
+			"versionExact": "develop"
+		},
+		{
 			"checksumSHA1": "SEnjvwVyfuU2xBaOfXfwPD5MZqk=",
 			"path": "github.com/mattn/go-colorable",
 			"revision": "efa589957cd060542a26d2dd7832fd6a6c6c3ade",
@@ -259,6 +337,12 @@
 			"path": "github.com/rifflock/lfshook",
 			"revision": "62f5e0662816a462697d29f396fd19376d17f65b",
 			"revisionTime": "2018-03-13T18:34:24Z"
+		},
+		{
+			"checksumSHA1": "zmC8/3V4ls53DJlNTKDZwPSC/dA=",
+			"path": "github.com/satori/go.uuid",
+			"revision": "5bf94b69c6b68ee1b541973bb8e1144db23a194b",
+			"revisionTime": "2017-03-21T23:07:31Z"
 		},
 		{
 			"checksumSHA1": "hyTqzI71mG/bQqtoN1o5CoO27rY=",

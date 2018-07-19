@@ -20,7 +20,8 @@ func New(osin *osin.Server, store sessions.Store) (*Service, error) {
 		web:   &restful.WebService{},
 	}
 
-	s.web.Path("/oauth2").Produces(restful.MIME_JSON)
+	s.web.Path("/").Produces(restful.MIME_JSON)
+	s.web.SetDynamicRoutes(true)
 	s.web.Route(s.web.
 		GET("/authorize").
 		To(s.authorize),

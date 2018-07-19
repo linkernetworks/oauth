@@ -6,12 +6,13 @@ import (
 	"github.com/RangelReale/osin"
 	restful "github.com/emicklei/go-restful"
 	"github.com/gin-contrib/sessions/memstore"
-	"github.com/gorilla/mux"
 	"github.com/gorilla/securecookie"
 	"github.com/linkernetworks/logger"
 	"github.com/linkernetworks/oauth/src/config"
 	"github.com/linkernetworks/oauth/src/osinstorage"
 	"github.com/linkernetworks/oauth/src/webservice"
+	"github.com/linkernetworks/webservice/login"
+	"github.com/linkernetworks/webservice/util"
 )
 
 type OAuthServer struct {
@@ -49,7 +50,7 @@ func (s *OAuthServer) ListenAndServe() error {
 	secret := securecookie.GenerateRandomKey(64)
 	store := memstore.NewStore(secret)
 
-	oauthWebService, err := webservice.New(
+	oauth, err := webservice.New(
 		osin,
 		store,
 	)
@@ -57,13 +58,17 @@ func (s *OAuthServer) ListenAndServe() error {
 		logger.Fatalf("Create OAuth web service failed. err: [%v]", err)
 	}
 
-	oauthContainer := restful.NewContainer()
-	oauthContainer.Add(oauthWebService.WebService())
+	// TODO: Input config
+	login, err := login.New(nil)
+	if err != nil {
+		logger.Fatalf("Create Login web service failed. err: [%v]", err)
+	}
 
-	r := mux.NewRouter()
-	r.PathPrefix("/oauth2/").Handler(oauthContainer)
+	container := restful.NewContainer()
+	container.Add(util.AppendRootPath(oauth.WebService(), "/oauth2"))
+	container.Add(util.AppendRootPath(login.WebService(), "/login"))
 
-	s.Handler = r
+	s.Handler = container
 
 	return s.Server.ListenAndServe()
 }
