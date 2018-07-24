@@ -1,46 +1,29 @@
 package server
 
 import (
-	"context"
 	"net/http"
-	"strconv"
-	"sync"
 
 	"github.com/RangelReale/osin"
-	"github.com/gin-contrib/sessions"
+	restful "github.com/emicklei/go-restful"
 	"github.com/gin-contrib/sessions/memstore"
-	"github.com/gin-gonic/gin"
+	"github.com/gorilla/mux"
 	"github.com/gorilla/securecookie"
-	"github.com/imdario/mergo"
 	"github.com/linkernetworks/logger"
 	"github.com/linkernetworks/oauth/src/config"
-	"github.com/linkernetworks/oauth/src/httphandler"
-	"github.com/linkernetworks/oauth/src/log"
 	"github.com/linkernetworks/oauth/src/osinstorage"
+	"github.com/linkernetworks/oauth/src/webservice"
 )
 
 type OAuthServer struct {
-	config      config.GlobalConfig
-	router      *gin.Engine
-	httpServer  *http.Server
-	osinStorage *osinstorage.MemoryStorage
-	osinServer  *osin.Server
+	config config.GlobalConfig
+	http.Server
+	oauthWebService *webservice.Service
 }
 
-func New(c ...config.GlobalConfig) *OAuthServer {
+func New(c config.GlobalConfig) *OAuthServer {
 
 	s := &OAuthServer{
-		config: config.DefaultConfig,
-	}
-
-	if len(c) > 0 {
-		if err := mergo.Merge(&s.config, c[0], mergo.WithOverride); err != nil {
-			logger.Fatalf("Merge config failed. err: %v", err)
-		}
-	}
-
-	if err := log.Init(s.config.LoggerConfig); err != nil {
-		logger.Warnf("Initialize logger failed. err: %v", err)
+		config: c,
 	}
 
 	logger.Debugf("config: %#v", s.config)
@@ -48,11 +31,10 @@ func New(c ...config.GlobalConfig) *OAuthServer {
 	return s
 }
 
-func (s *OAuthServer) Start() error {
+func (s *OAuthServer) ListenAndServe() error {
 
-	s.router = gin.Default()
-
-	s.osinStorage = osinstorage.NewMemoryStorage(
+	// TODO: use mongo
+	storage := osinstorage.NewMemoryStorage(
 		// TODO: input client data from outside
 		osin.DefaultClient{
 			Id:          "1234",
@@ -61,108 +43,27 @@ func (s *OAuthServer) Start() error {
 		},
 	)
 
-	s.osinServer = osin.NewServer(&s.config.OsinConfig, s.osinStorage)
-	s.router.Use(func(c *gin.Context) {
-		c.Set("osinServer", s.osinServer)
-		c.Next()
-	})
+	osin := osin.NewServer(&s.config.OsinConfig, storage)
 
+	// TODO: use redis
 	secret := securecookie.GenerateRandomKey(64)
 	store := memstore.NewStore(secret)
-	s.router.Use(sessions.Sessions("session", store))
 
-	s.startHTTP()
-
-	return nil
-}
-
-func (s *OAuthServer) Shutdown(ctx context.Context) error {
-
-	wg := sync.WaitGroup{}
-
-	wg.Add(1)
-	go func() {
-		err := s.httpServer.Shutdown(ctx)
-		if err != nil {
-			logger.Warnf("Shutdown HTTP server failed. err: [%v]", err)
-		}
-		wg.Done()
-	}()
-
-	wait := make(chan int)
-	go func() {
-		wg.Wait()
-		wait <- 1
-	}()
-
-	select {
-	case <-ctx.Done():
-	case <-wait:
-	}
-
-	return ctx.Err()
-}
-
-func (s *OAuthServer) startHTTP() error {
-
-	s.router.GET("/", func(c *gin.Context) {
-		c.String(http.StatusOK, "Welcome Gin Server")
-	})
-
-	s.router.GET("/login", httphandler.LoginPage)
-
-	api := s.router.Group("/api")
-	{
-		api.POST("/login", httphandler.Login)
-
-		oauthv2 := api.Group("/oauth2")
-		{
-			oauthv2.Use(httphandler.CheckAuthorizedUser).GET("/authorize", httphandler.Authorize)
-			oauthv2.POST("/token", httphandler.Token)
-		}
-	}
-
-	https, err := strconv.ParseBool(s.config.UseHTTPS)
+	oauthWebService, err := webservice.New(
+		osin,
+		store,
+	)
 	if err != nil {
-		logger.Fatalf("Parse boll string failed. err: %v", err)
+		logger.Fatalf("Create OAuth web service failed. err: [%v]", err)
 	}
 
-	if https {
-		bind := ":" + strconv.Itoa(s.config.HTTPSPort)
-		logger.Infof("Starting HTTPS server on [%v]", bind)
+	oauthContainer := restful.NewContainer()
+	oauthContainer.Add(oauthWebService.WebService())
 
-		s.httpServer = &http.Server{
-			Addr:    bind,
-			Handler: s.router,
-		}
+	r := mux.NewRouter()
+	r.PathPrefix("/oauth2/").Handler(oauthContainer)
 
-		go func() {
-			err := s.httpServer.ListenAndServeTLS(s.config.CertPublicKey, s.config.CertPrivateKey)
-			if err != nil && err != http.ErrServerClosed {
-				logger.Fatalf("Start HTTPS server failed. err: %v", err)
-			} else {
-				logger.Infof("HTTPS server closed.")
-			}
-		}()
+	s.Handler = r
 
-	} else {
-		bind := ":" + strconv.Itoa(s.config.HTTPPort)
-		logger.Infof("Starting HTTP server on [%v]", bind)
-
-		s.httpServer = &http.Server{
-			Addr:    bind,
-			Handler: s.router,
-		}
-
-		go func() {
-			err := s.httpServer.ListenAndServe()
-			if err != nil && err != http.ErrServerClosed {
-				logger.Fatalf("Start HTTP server failed. err: %v", err)
-			} else {
-				logger.Infof("HTTP server closed.")
-			}
-		}()
-	}
-
-	return nil
+	return s.Server.ListenAndServe()
 }
